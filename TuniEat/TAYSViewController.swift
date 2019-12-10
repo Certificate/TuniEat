@@ -18,9 +18,9 @@ class TAYSViewController : UIViewController{
         label.center = view.center
         label.textAlignment = .center
         label.text = "TAYS"
-        label.textColor = UIColor.white
+        label.textColor = UIColor.black
         self.view.addSubview(label)
         
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
     }
 }
