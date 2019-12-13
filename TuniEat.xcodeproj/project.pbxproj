@@ -66,6 +66,7 @@
 		053F3FA7239FEECE00A30F6E /* TuniEat */ = {
 			isa = PBXGroup;
 			children = (
+				05D877F323A1985D00253288 /* UI */,
 				053F3FC923A002DA00A30F6E /* ViewModels */,
 				053F3FC6239FFD5100A30F6E /* Menus */,
 				053F3FA8239FEECE00A30F6E /* AppDelegate.swift */,
@@ -73,10 +74,6 @@
 				053F3FB3239FEECF00A30F6E /* LaunchScreen.storyboard */,
 				053F3FB6239FEECF00A30F6E /* Info.plist */,
 				053F3FB0239FEECF00A30F6E /* Preview Content */,
-				053F3FBC239FEFDD00A30F6E /* CustomTabBarController.swift */,
-				053F3FBE239FF03700A30F6E /* CentrumViewController.swift */,
-				053F3FC0239FF2E900A30F6E /* HervantaViewController.swift */,
-				053F3FC2239FF31400A30F6E /* TAYSViewController.swift */,
 				053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */,
 			);
 			path = TuniEat;
@@ -104,6 +101,17 @@
 				053F3FCA23A002E700A30F6E /* MenuViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		05D877F323A1985D00253288 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				053F3FBC239FEFDD00A30F6E /* CustomTabBarController.swift */,
+				053F3FBE239FF03700A30F6E /* CentrumViewController.swift */,
+				053F3FC0239FF2E900A30F6E /* HervantaViewController.swift */,
+				053F3FC2239FF31400A30F6E /* TAYSViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

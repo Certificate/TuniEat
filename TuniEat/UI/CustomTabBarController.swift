@@ -9,8 +9,15 @@
 import UIKit
 
 class CustomTabBarController : UITabBarController{
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "TuniEat";
         
         let centrum = CentrumViewController()
         centrum.title = "Centrum"
@@ -25,5 +32,8 @@ class CustomTabBarController : UITabBarController{
         tays.tabBarItem.image = UIImage(named: "Hospital")
         
         viewControllers = [centrum, hervanta, tays]
+        
+        let menudl = MenuDownloader()
+        menudl.GetMenu("Linna")
     }
 }
