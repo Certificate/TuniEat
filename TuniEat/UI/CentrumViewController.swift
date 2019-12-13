@@ -8,19 +8,36 @@
 
 import UIKit
 
-class CentrumViewController : UIViewController{
-
+class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    var tableView = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.white
         
-        label.center = view.center
-        label.textAlignment = .center
-        label.text = "City Centre"
-        label.textColor = UIColor.black
-        self.view.addSubview(label)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
+        view.addSubview(tableView)
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+        }
         
-        view.backgroundColor = UIColor.white
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        cell.textLabel?.text = "This is a row"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
 }
