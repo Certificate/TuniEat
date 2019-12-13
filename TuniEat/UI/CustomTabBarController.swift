@@ -33,7 +33,7 @@ class CustomTabBarController : UITabBarController{
         
         viewControllers = [centrum, hervanta, tays]
         
-        let menudl = MenuDownloader()
-        menudl.GetMenu("Linna")
+        
+        
     }
 }

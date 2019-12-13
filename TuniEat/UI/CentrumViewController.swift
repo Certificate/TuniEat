@@ -12,6 +12,10 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     
     var tableView = UITableView()
     
+    var numberOfItems = 1
+    
+    var meals: [Meal] = [Meal("Juuh elicks", "2.60")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +26,17 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
         view.addSubview(tableView)
+        
+        let menudl = MenuDownloader()
+        menudl.GetMenu("Linna", finished: { mealList in
+            print(mealList.count)
+            
+            DispatchQueue.main.async {
+                self.meals = mealList
+                self.numberOfItems = mealList.count
+                self.reloadNumber()
+            }
+        })
     }
     
     
@@ -32,12 +47,16 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        cell.textLabel?.text = "This is a row"
+        cell.textLabel?.text = meals[0].name ?? "Nada"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return numberOfItems
+    }
+    
+    func reloadNumber(){
+        self.tableView.reloadData()
     }
 }
