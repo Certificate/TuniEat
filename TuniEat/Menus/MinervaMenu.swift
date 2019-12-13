@@ -1,9 +1,8 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - MinervaMenu
 struct MinervaMenu: Codable {
     let restaurantName: String
     let restaurantURL: String
@@ -24,7 +23,7 @@ struct MinervaMenu: Codable {
 
 // MARK: - MenusForDay
 struct MenusForDay: Codable {
-    let date: Date
+    let date: String
     let lunchTime: String?
     let setMenus: [SetMenu]
 
@@ -60,10 +59,6 @@ class JSONNull: Codable, Hashable {
 
     public var hashValue: Int {
         return 0
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        // No-op
     }
 
     public init() {}

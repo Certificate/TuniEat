@@ -12,9 +12,9 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     
     var tableView = UITableView()
     
-    var numberOfItems = 1
+    var numberOfItems = 0
     
-    var meals: [Meal] = [Meal("Juuh elicks", "2.60")]
+    var meals: [Meal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,27 +28,13 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         view.addSubview(tableView)
         
         let menudl = MenuDownloader()
-        menudl.GetMenu("Linna", finished: { mealList in
-            print(mealList.count)
-            
-            DispatchQueue.main.async {
-                self.meals = mealList
-                self.numberOfItems = mealList.count
-                self.reloadNumber()
-            }
-        })
+        menudl.DownloadMenus()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-        }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        cell.textLabel?.text = meals[0].name ?? "Nada"
-        
+        cell.textLabel?.text =  "asd"
         return cell
     }
     
