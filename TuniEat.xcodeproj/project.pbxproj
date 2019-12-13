@@ -17,7 +17,7 @@
 		053F3FC3239FF31400A30F6E /* TAYSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FC2239FF31400A30F6E /* TAYSViewController.swift */; };
 		053F3FC5239FF7EC00A30F6E /* MenuDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */; };
 		053F3FC8239FFD5F00A30F6E /* LinnaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */; };
-		053F3FCB23A002E700A30F6E /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FCA23A002E700A30F6E /* MenuViewModel.swift */; };
+		053F3FCB23A002E700A30F6E /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FCA23A002E700A30F6E /* Meal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		053F3FC2239FF31400A30F6E /* TAYSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAYSViewController.swift; sourceTree = "<group>"; };
 		053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDownloader.swift; sourceTree = "<group>"; };
 		053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinnaMenu.swift; sourceTree = "<group>"; };
-		053F3FCA23A002E700A30F6E /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		053F3FCA23A002E700A30F6E /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +98,7 @@
 		053F3FC923A002DA00A30F6E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				053F3FCA23A002E700A30F6E /* MenuViewModel.swift */,
+				053F3FCA23A002E700A30F6E /* Meal.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 				053F3FC5239FF7EC00A30F6E /* MenuDownloader.swift in Sources */,
 				053F3FC8239FFD5F00A30F6E /* LinnaMenu.swift in Sources */,
 				053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */,
-				053F3FCB23A002E700A30F6E /* MenuViewModel.swift in Sources */,
+				053F3FCB23A002E700A30F6E /* Meal.swift in Sources */,
 				053F3FC1239FF2E900A30F6E /* HervantaViewController.swift in Sources */,
 				053F3FBD239FEFDD00A30F6E /* CustomTabBarController.swift in Sources */,
 				053F3FBF239FF03700A30F6E /* CentrumViewController.swift in Sources */,
