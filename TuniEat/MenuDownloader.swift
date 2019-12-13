@@ -11,6 +11,7 @@ import Foundation
 class MenuDownloader{
     
     let LinnaMenuAddress = "https://www.sodexo.fi/ruokalistat/output/daily_json/116/"
+    let MinervaMenuJSON = "https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=0815&language=fi"
     
     func GetCurrentDate() -> String {
         let formatter = DateFormatter()
