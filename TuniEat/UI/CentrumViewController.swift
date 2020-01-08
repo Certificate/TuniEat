@@ -12,7 +12,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     
     var tableView = UITableView()
     
-    var numberOfItems = 0
+    var numberOfItems = 5
     
     var meals: [Meal] = []
     
@@ -23,8 +23,9 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.white
+        tableView.rowHeight = 60
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menuCell")
+        tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
         view.addSubview(tableView)
         
         let menudl = MenuDownloader()
@@ -33,8 +34,8 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-        cell.textLabel?.text =  "asd"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuCell
+        cell.setupValues(viewModel: Meal("Example Meal \(indexPath)", "2.60€"))
         return cell
     }
     

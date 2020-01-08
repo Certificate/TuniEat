@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A4ABF23AD0B38008262BB /* MenuCell.swift */; };
 		053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FA8239FEECE00A30F6E /* AppDelegate.swift */; };
 		053F3FAF239FEECF00A30F6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053F3FAE239FEECF00A30F6E /* Assets.xcassets */; };
 		053F3FB2239FEECF00A30F6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053F3FB1239FEECF00A30F6E /* Preview Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053A4ABF23AD0B38008262BB /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		053F3FA5239FEECE00A30F6E /* TuniEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuniEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053F3FA8239FEECE00A30F6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053F3FAE239FEECF00A30F6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				053F3FBE239FF03700A30F6E /* CentrumViewController.swift */,
 				053F3FC0239FF2E900A30F6E /* HervantaViewController.swift */,
 				053F3FC2239FF31400A30F6E /* TAYSViewController.swift */,
+				053A4ABF23AD0B38008262BB /* MenuCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				053F3FCB23A002E700A30F6E /* Meal.swift in Sources */,
 				053F3FC1239FF2E900A30F6E /* HervantaViewController.swift in Sources */,
 				055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */,
+				053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */,
 				053F3FBD239FEFDD00A30F6E /* CustomTabBarController.swift in Sources */,
 				053F3FBF239FF03700A30F6E /* CentrumViewController.swift in Sources */,
 				053F3FC3239FF31400A30F6E /* TAYSViewController.swift in Sources */,
