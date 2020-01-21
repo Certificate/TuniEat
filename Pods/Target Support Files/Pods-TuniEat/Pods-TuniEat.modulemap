@@ -1,0 +1,6 @@
+framework module Pods_TuniEat {
+  umbrella header "Pods-TuniEat-umbrella.h"
+
+  export *
+  module * { export * }
+}

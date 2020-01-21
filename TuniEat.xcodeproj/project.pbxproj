@@ -20,6 +20,7 @@
 		053F3FC8239FFD5F00A30F6E /* LinnaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */; };
 		053F3FCB23A002E700A30F6E /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FCA23A002E700A30F6E /* Meal.swift */; };
 		055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E09C523A41BD500378F36 /* MinervaMenu.swift */; };
+		93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,9 @@
 		053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinnaMenu.swift; sourceTree = "<group>"; };
 		053F3FCA23A002E700A30F6E /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		055E09C523A41BD500378F36 /* MinervaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinervaMenu.swift; sourceTree = "<group>"; };
+		071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuniEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.release.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.release.xcconfig"; sourceTree = "<group>"; };
+		F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.debug.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +61,8 @@
 			children = (
 				053F3FA7239FEECE00A30F6E /* TuniEat */,
 				053F3FA6239FEECE00A30F6E /* Products */,
+				F4D3140353867A92CE07920B /* Pods */,
+				6E6F4CA48CD22B0D526F3C57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +127,24 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		6E6F4CA48CD22B0D526F3C57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4D3140353867A92CE07920B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */,
+				7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,9 +152,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 053F3FB9239FEECF00A30F6E /* Build configuration list for PBXNativeTarget "TuniEat" */;
 			buildPhases = (
+				6C14A7AD5596478A2D90AFE7 /* [CP] Check Pods Manifest.lock */,
 				053F3FA1239FEECE00A30F6E /* Sources */,
 				053F3FA2239FEECE00A30F6E /* Frameworks */,
 				053F3FA3239FEECE00A30F6E /* Resources */,
+				A4D0FE7C89B4867CAB6BCDF1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,6 +212,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C14A7AD5596478A2D90AFE7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TuniEat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4D0FE7C89B4867CAB6BCDF1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TuniEat/Pods-TuniEat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TuniEat/Pods-TuniEat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TuniEat/Pods-TuniEat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		053F3FA1239FEECE00A30F6E /* Sources */ = {
@@ -334,6 +403,7 @@
 		};
 		053F3FBA239FEECF00A30F6E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -355,6 +425,7 @@
 		};
 		053F3FBB239FEECF00A30F6E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
