@@ -23,6 +23,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 60
+        tableView.allowsSelection = false
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
         view.addSubview(tableView)
