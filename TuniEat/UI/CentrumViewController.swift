@@ -10,6 +10,10 @@ import UIKit
 
 class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MenuDownloaderDelegate{
     
+    func didFinishMinervaDownload(sender: MenuDownloader) {
+        <#code#>
+    }
+    
     func didFinishLinnaDownload(sender: MenuDownloader) {
         linnaMeals = menuDownloader.linnaMenu
         reloadData()

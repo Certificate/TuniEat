@@ -9,7 +9,9 @@
 import Foundation
 
 protocol MenuDownloaderDelegate: AnyObject {
-  func didFinishLinnaDownload(sender: MenuDownloader)
+    func didFinishLinnaDownload(sender: MenuDownloader)
+    
+    func didFinishMinervaDownload(sender: MenuDownloader)
 }
 
 class MenuDownloader{
