@@ -14,7 +14,6 @@ class MenuCell : UITableViewCell{
     let foodName:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        //label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -22,11 +21,8 @@ class MenuCell : UITableViewCell{
     let foodPrice:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        //label.textColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        //label.backgroundColor =  #colorLiteral(red: 0.2431372549, green: 0.7647058824, blue: 0.8392156863, alpha: 1)
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,7 +30,7 @@ class MenuCell : UITableViewCell{
     let containerView:UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true // this will make sure its children do not go out of the boundary
+        view.clipsToBounds = true
         return view
     }()
 
@@ -66,15 +62,14 @@ class MenuCell : UITableViewCell{
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.right)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.bottom)
         
-        foodName.autoPinEdge(toSuperviewEdge: ALEdge.left, withInset: 20)
-        foodName.autoPinEdge(toSuperviewEdge: ALEdge.top)
-        foodName.autoPinEdge(toSuperviewEdge: ALEdge.right)
+        foodName.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView, withOffset: 20)
+        foodName.autoPinEdge(ALEdge.top, to:ALEdge.top, of: containerView, withOffset: 0)
+        foodName.autoPinEdge(ALEdge.right, to:ALEdge.right, of: containerView, withOffset: 0)
         foodName.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: foodPrice)
         
-        foodPrice.autoPinEdge(toSuperviewEdge: ALEdge.left, withInset: 20)
-        foodPrice.autoPinEdge(toSuperviewEdge: ALEdge.bottom, withInset: 6)
-        foodPrice.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: foodName, withOffset: 7)
-        
-        
+        foodPrice.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView, withOffset: 20)
+        foodPrice.autoPinEdge(ALEdge.bottom, to:ALEdge.bottom, of: containerView, withOffset: 0)
+        foodPrice.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: foodName, withOffset: 0)
+
     }
 }
