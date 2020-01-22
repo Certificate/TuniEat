@@ -11,7 +11,8 @@ import UIKit
 class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MenuDownloaderDelegate{
     
     func didFinishMinervaDownload(sender: MenuDownloader) {
-        <#code#>
+        minervaMeals = menuDownloader.minervaMenu
+        reloadData()
     }
     
     func didFinishLinnaDownload(sender: MenuDownloader) {
@@ -24,11 +25,14 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     let menuDownloader = MenuDownloader()
     
     var linnaMeals: [Meal] = []
+    var minervaMeals: [Meal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         menuDownloader.delegate = self
+        
+        self.navigationItem.title = "ASD"
         
         tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView.dataSource = self
@@ -42,18 +46,51 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         menuDownloader.DownloadMenus()
     }
     
-    func calculateNumberofItems() -> Int {
-        return linnaMeals.count
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuCell
-        cell.setupValues(viewModel: linnaMeals[indexPath.row])
+        
+        if(indexPath.section == 0){
+            cell.setupValues(viewModel: linnaMeals[indexPath.row])
+        }
+        if(indexPath.section == 1){
+            cell.setupValues(viewModel: minervaMeals[indexPath.row])
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Linna"
+        case 1:
+            return "Minerva"
+        default:
+            return "Unknown"
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calculateNumberofItems()
+        
+        switch section {
+        case 0:
+            return linnaMeals.count
+        case 1:
+            return minervaMeals.count
+        default:
+            return 0
+        }
+
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var count = 0
+        if (!linnaMeals.isEmpty) {
+            count+=1
+        }
+        if (!minervaMeals.isEmpty) {
+            count+=1
+        }
+        return count
     }
     
     func reloadData(){

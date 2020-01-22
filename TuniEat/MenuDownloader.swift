@@ -27,15 +27,16 @@ class MenuDownloader{
     func DownloadMenus(){
         self.GetMenu("Minerva", MinervaMenuJSON, finished: { mealList in
             print("Got \(mealList.count) of Minerva meals.")
-            
             self.minervaMenu = mealList
+            print("[Delegate]: Minerva menu ready.")
+            self.delegate?.didFinishMinervaDownload(sender: self)
         })
         
         self.GetMenu("Linna", LinnaMenuJSON, finished: { mealList in
             print("Got \(mealList.count) of Linna meals.")
             
             self.linnaMenu = mealList
-            print("Sending delegate message!")
+            print("[Delegate]: Linna menu ready.")
             self.delegate?.didFinishLinnaDownload(sender: self)
         })
         
@@ -67,7 +68,10 @@ class MenuDownloader{
                         let linnaMenus = try jsonDecoder.decode(LinnaMenu.self, from: data)
                         
                         for menu in linnaMenus.courses{
-                            meals.append(Meal(menu.value.titleEn, menu.value.price))
+                            // Sometimes an empty meal is presented. Only let through values with real data.
+                            if(!menu.value.titleEn.isEmpty && !menu.value.price.isEmpty){
+                                meals.append(Meal(menu.value.titleEn, menu.value.price))
+                            }
                         }
                     case "Minerva":
                         let minervaMenus = try jsonDecoder.decode(MinervaMenu.self, from: data)

@@ -12,15 +12,17 @@ class CustomTabBarController : UITabBarController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Switching!")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "TuniEat";
+        self.navigationItem.title = "Centrum"
         
         let centrum = CentrumViewController()
         centrum.title = "Centrum"
+        centrum.navigationItem.title = "Centrum"
         centrum.tabBarItem.image = UIImage(named: "Banner")
         
         let hervanta = HervantaViewController()
@@ -32,8 +34,6 @@ class CustomTabBarController : UITabBarController{
         tays.tabBarItem.image = UIImage(named: "Hospital")
         
         viewControllers = [centrum, hervanta, tays]
-        
-        
         
     }
 }
