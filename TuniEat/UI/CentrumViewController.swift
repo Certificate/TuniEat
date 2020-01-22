@@ -8,16 +8,23 @@
 
 import UIKit
 
-class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource{
+class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MenuDownloaderDelegate{
+    
+    func didFinishLinnaDownload(sender: MenuDownloader) {
+        linnaMeals = menuDownloader.linnaMenu
+        reloadData()
+    }
     
     var tableView = UITableView()
     
-    var numberOfItems = 5
+    let menuDownloader = MenuDownloader()
     
-    var meals: [Meal] = []
+    var linnaMeals: [Meal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        menuDownloader.delegate = self
         
         tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView.dataSource = self
@@ -27,23 +34,27 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
         view.addSubview(tableView)
-        
-        let menudl = MenuDownloader()
-        menudl.DownloadMenus()
+    
+        menuDownloader.DownloadMenus()
     }
     
-        
+    func calculateNumberofItems() -> Int {
+        return linnaMeals.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuCell
-        cell.setupValues(viewModel: Meal("Example Meal \(indexPath)", "2.60€"))
+        cell.setupValues(viewModel: linnaMeals[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfItems
+        return calculateNumberofItems()
     }
     
-    func reloadNumber(){
-        self.tableView.reloadData()
+    func reloadData(){
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
 }

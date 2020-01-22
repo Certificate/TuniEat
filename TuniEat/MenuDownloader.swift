@@ -8,7 +8,13 @@
 
 import Foundation
 
+protocol MenuDownloaderDelegate: AnyObject {
+  func didFinishLinnaDownload(sender: MenuDownloader)
+}
+
 class MenuDownloader{
+    
+    weak var delegate:MenuDownloaderDelegate?
     
     let LinnaMenuJSON = "https://www.sodexo.fi/ruokalistat/output/daily_json/116/"
     let MinervaMenuJSON = "https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=0815&language=fi"
@@ -27,7 +33,10 @@ class MenuDownloader{
             print("Got \(mealList.count) of Linna meals.")
             
             self.linnaMenu = mealList
+            print("Sending delegate message!")
+            self.delegate?.didFinishLinnaDownload(sender: self)
         })
+        
     }
     
     func GetCurrentDate() -> String {
