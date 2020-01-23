@@ -18,23 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let navbar = setupNavBar()
-        let mainView = CustomTabBarController()
-        navbar.viewControllers = [mainView]
         
-        window?.rootViewController = navbar
-        
-        // Override point for customization after application launch.
-        return true
-    }
-    
-    func setupNavBar() -> UINavigationController{
-        let nav = UINavigationController()
+        let customTabBar = CustomTabBarController()
+        let nav = UINavigationController(rootViewController: customTabBar)
         
         if #available(iOS 11.0, *) {
           nav.navigationBar.prefersLargeTitles = true
         }
-        return nav
+        
+        window?.rootViewController = nav
+        
+        // Override point for customization after application launch.
+        return true
     }
 }
 
