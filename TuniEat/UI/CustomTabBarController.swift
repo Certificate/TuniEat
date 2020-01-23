@@ -18,11 +18,11 @@ class CustomTabBarController : UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Since we launch into Centrum, default title to that as well.
         self.navigationItem.title = "Centrum"
         
         let centrum = CentrumViewController()
         centrum.title = "Centrum"
-        centrum.navigationItem.title = "Centrum"
         centrum.tabBarItem.image = UIImage(named: "Banner")
         
         let hervanta = HervantaViewController()
@@ -35,5 +35,19 @@ class CustomTabBarController : UITabBarController{
         
         viewControllers = [centrum, hervanta, tays]
         
+    }
+    
+    // Change navigationcontroller title according to chosen tab
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.title {
+        case "Centrum":
+            self.navigationItem.title = "Centrum"
+        case "Hervanta":
+            self.navigationItem.title = "Hervanta"
+        case "TAYS":
+            self.navigationItem.title = "TAYS"
+        default:
+            self.navigationItem.title = "What the..."
+        }
     }
 }

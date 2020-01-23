@@ -32,8 +32,6 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         
         menuDownloader.delegate = self
         
-        self.navigationItem.title = "ASD"
-        
         tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView.dataSource = self
         tableView.delegate = self
