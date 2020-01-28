@@ -11,9 +11,23 @@ import UIKit
 
 class MenuCell : UITableViewCell{
     
-    let foodName:UILabel = {
+    let foodTitle:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let foodComponent1:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let foodComponent2:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +52,7 @@ class MenuCell : UITableViewCell{
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        containerView.addSubview(foodName)
+        containerView.addSubview(foodTitle)
         containerView.addSubview(foodPrice)
         self.contentView.addSubview(containerView)
         
@@ -46,7 +60,7 @@ class MenuCell : UITableViewCell{
     }
     
     func setupValues(viewModel: Meal){
-        foodName.text = viewModel.name
+        foodTitle.text = viewModel.title
         foodPrice.text = viewModel.price
     }
     
@@ -54,22 +68,34 @@ class MenuCell : UITableViewCell{
         super.init(coder: coder)
     }
     
+    func setupDebugColors(){
+        foodPrice.backgroundColor = UIColor.red
+        foodTitle.backgroundColor = UIColor.green
+        foodComponent1.backgroundColor = UIColor.systemPink
+        foodComponent2.backgroundColor = UIColor.yellow
+    }
+    
     override func updateConstraints() {
         super.updateConstraints()
         
-        containerView.autoPinEdge(toSuperviewEdge: ALEdge.left)
+        setupDebugColors()
+        
+        containerView.autoPinEdge(toSuperviewEdge: ALEdge.left, withInset: 20)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.top)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.right)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.bottom)
+        //containerView.backgroundColor = UIColor.systemPink
         
-        foodName.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView, withOffset: 20)
-        foodName.autoPinEdge(ALEdge.top, to:ALEdge.top, of: containerView, withOffset: 0)
-        foodName.autoPinEdge(ALEdge.right, to:ALEdge.right, of: containerView, withOffset: 0)
-        foodName.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: foodPrice)
+        foodTitle.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
+        foodTitle.autoPinEdge(ALEdge.top, to:ALEdge.top, of: containerView, withOffset: 0)
+        foodTitle.autoPinEdge(ALEdge.right, to:ALEdge.right, of: containerView, withOffset: 0)
+        foodTitle.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: foodPrice, withOffset: 0)
+        //foodName.backgroundColor = UIColor.blue
         
-        foodPrice.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView, withOffset: 20)
-        foodPrice.autoPinEdge(ALEdge.bottom, to:ALEdge.bottom, of: containerView, withOffset: 0)
-        foodPrice.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: foodName, withOffset: 0)
+        foodPrice.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
+        foodPrice.autoPinEdge(ALEdge.bottom, to:ALEdge.bottom, of: containerView, withOffset: -5)
+        foodPrice.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: foodTitle, withOffset: 0)
+        //foodPrice.backgroundColor = UIColor.red
 
     }
 }

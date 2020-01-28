@@ -35,7 +35,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 60
+        //tableView.rowHeight = 60
         tableView.allowsSelection = false
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
