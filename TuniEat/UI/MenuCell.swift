@@ -20,14 +20,21 @@ class MenuCell : UITableViewCell{
     
     let foodComponent1:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let foodComponent2:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let foodComponent3:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +42,7 @@ class MenuCell : UITableViewCell{
     let foodPrice:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.layer.cornerRadius = 5
+        label.textColor = UIColor.systemBlue
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -54,6 +61,9 @@ class MenuCell : UITableViewCell{
         
         containerView.addSubview(foodTitle)
         containerView.addSubview(foodPrice)
+        containerView.addSubview(foodComponent1)
+        containerView.addSubview(foodComponent2)
+        containerView.addSubview(foodComponent3)
         self.contentView.addSubview(containerView)
         
         setNeedsUpdateConstraints()
@@ -62,6 +72,16 @@ class MenuCell : UITableViewCell{
     func setupValues(viewModel: Meal){
         foodTitle.text = viewModel.title
         foodPrice.text = viewModel.price
+        
+        if !viewModel.component1.isEmpty  {
+            foodComponent1.text = viewModel.component1
+        }
+        if !viewModel.component2.isEmpty  {
+            foodComponent2.text = viewModel.component2
+        }
+        if !viewModel.component3.isEmpty  {
+            foodComponent3.text = viewModel.component2
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -78,24 +98,33 @@ class MenuCell : UITableViewCell{
     override func updateConstraints() {
         super.updateConstraints()
         
-        setupDebugColors()
+        //setupDebugColors()
         
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.left, withInset: 20)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.top)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.right)
         containerView.autoPinEdge(toSuperviewEdge: ALEdge.bottom)
-        //containerView.backgroundColor = UIColor.systemPink
         
         foodTitle.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
         foodTitle.autoPinEdge(ALEdge.top, to:ALEdge.top, of: containerView, withOffset: 0)
         foodTitle.autoPinEdge(ALEdge.right, to:ALEdge.right, of: containerView, withOffset: 0)
-        foodTitle.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: foodPrice, withOffset: 0)
-        //foodName.backgroundColor = UIColor.blue
+        foodTitle.autoPinEdge(ALEdge.bottom, to: ALEdge.top, of: foodComponent1, withOffset: 0)
         
         foodPrice.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
         foodPrice.autoPinEdge(ALEdge.bottom, to:ALEdge.bottom, of: containerView, withOffset: -5)
-        foodPrice.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: foodTitle, withOffset: 0)
-        //foodPrice.backgroundColor = UIColor.red
+        foodPrice.autoPinEdge(ALEdge.top, to: ALEdge.bottom, of: foodComponent3, withOffset: 0)
+        
+        foodComponent1.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
+        foodComponent1.autoPinEdge(ALEdge.bottom, to:ALEdge.top, of: foodComponent2)
+        foodComponent1.autoPinEdge(ALEdge.top, to:ALEdge.bottom, of: foodTitle)
+        
+        foodComponent2.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
+        foodComponent2.autoPinEdge(ALEdge.bottom, to:ALEdge.top, of: foodComponent3)
+        foodComponent2.autoPinEdge(ALEdge.top, to:ALEdge.bottom, of: foodComponent1)
+        
+        foodComponent3.autoPinEdge(ALEdge.left, to: ALEdge.left, of: containerView)
+        foodComponent3.autoPinEdge(ALEdge.bottom, to:ALEdge.top, of: foodPrice)
+        foodComponent3.autoPinEdge(ALEdge.top, to:ALEdge.bottom, of: foodComponent2)
 
     }
 }

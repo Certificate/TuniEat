@@ -139,6 +139,12 @@ class MenuDownloader{
             let component1 = cleanMinerva(fullName: components[1])
             let component2 = cleanMinerva(fullName: components[2])
             return Meal(title, price, comp1: component1, comp2: component2)
+        case 4:
+            let title = cleanMinerva(fullName: components[0])
+            let component1 = cleanMinerva(fullName: components[1])
+            let component2 = cleanMinerva(fullName: components[2])
+            let component3 = cleanMinerva(fullName: components[3])
+            return Meal(title, price, comp1: component1, comp2: component2, comp3: component3)
         default:
             let title = cleanMinerva(fullName: components[0])
             return Meal(title, price)
