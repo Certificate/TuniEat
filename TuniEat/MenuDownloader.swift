@@ -70,7 +70,7 @@ class MenuDownloader{
                         for menu in linnaMenus.courses{
                             // Sometimes an empty meal is presented. Only let through values with real data.
                             if(!menu.value.titleEn.isEmpty && !menu.value.price.isEmpty){
-                                meals.append(Meal(menu.value.titleEn, menu.value.price))
+                                meals.append(Meal(menu.value.titleFi, menu.value.price))
                             }
                         }
                     case "Minerva":
