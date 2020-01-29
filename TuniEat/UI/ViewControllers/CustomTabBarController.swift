@@ -12,7 +12,6 @@ class CustomTabBarController : UITabBarController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Switching!")
     }
     
     override func viewDidLoad() {

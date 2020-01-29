@@ -56,6 +56,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05363E9423E174F600629FA6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				05363E9223E174EE00629FA6 /* Colors.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		05363E9523E1782C00629FA6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				053F3FBC239FEFDD00A30F6E /* CustomTabBarController.swift */,
+				053F3FBE239FF03700A30F6E /* CentrumViewController.swift */,
+				053F3FC0239FF2E900A30F6E /* HervantaViewController.swift */,
+				053F3FC2239FF31400A30F6E /* TAYSViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		053F3F9C239FEECE00A30F6E = {
 			isa = PBXGroup;
 			children = (
@@ -118,10 +137,7 @@
 		05D877F323A1985D00253288 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				053F3FBC239FEFDD00A30F6E /* CustomTabBarController.swift */,
-				053F3FBE239FF03700A30F6E /* CentrumViewController.swift */,
-				053F3FC0239FF2E900A30F6E /* HervantaViewController.swift */,
-				053F3FC2239FF31400A30F6E /* TAYSViewController.swift */,
+				05363E9523E1782C00629FA6 /* ViewControllers */,
 				053A4ABF23AD0B38008262BB /* MenuCell.swift */,
 			);
 			path = UI;

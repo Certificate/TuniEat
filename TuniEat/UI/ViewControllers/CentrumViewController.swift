@@ -9,7 +9,8 @@
 import UIKit
 
 class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MenuDownloaderDelegate{
-    
+
+    // Delegate functions
     func didFinishMinervaDownload(sender: MenuDownloader) {
         minervaMeals = menuDownloader.minervaMenu
         reloadData()
@@ -19,11 +20,11 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         linnaMeals = menuDownloader.linnaMenu
         reloadData()
     }
-    
+
     var tableView = UITableView()
-    
     let menuDownloader = MenuDownloader()
     
+    // Menus
     var linnaMeals: [Meal] = []
     var minervaMeals: [Meal] = []
     
@@ -35,7 +36,6 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.rowHeight = 60
         tableView.allowsSelection = false
         
         tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
@@ -68,7 +68,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         switch section {
         case 0:
             return linnaMeals.count
@@ -92,7 +92,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
     }
     
     func reloadData(){
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
