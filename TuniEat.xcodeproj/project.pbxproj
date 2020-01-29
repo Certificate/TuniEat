@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05363E9223E174EE00629FA6 /* Colors.xcassets */; };
 		053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A4ABF23AD0B38008262BB /* MenuCell.swift */; };
 		053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FA8239FEECE00A30F6E /* AppDelegate.swift */; };
 		053F3FAF239FEECF00A30F6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053F3FAE239FEECF00A30F6E /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05363E9223E174EE00629FA6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		053A4ABF23AD0B38008262BB /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		053F3FA5239FEECE00A30F6E /* TuniEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuniEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053F3FA8239FEECE00A30F6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		053F3FA7239FEECE00A30F6E /* TuniEat */ = {
 			isa = PBXGroup;
 			children = (
+				05363E9423E174F600629FA6 /* Assets */,
 				05D877F323A1985D00253288 /* UI */,
 				053F3FC923A002DA00A30F6E /* ViewModels */,
 				053F3FC6239FFD5100A30F6E /* Menus */,
@@ -157,7 +160,6 @@
 				F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */,
 				7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -222,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				053F3FB5239FEECF00A30F6E /* LaunchScreen.storyboard in Resources */,
+				05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */,
 				053F3FB2239FEECF00A30F6E /* Preview Assets.xcassets in Resources */,
 				053F3FAF239FEECF00A30F6E /* Assets.xcassets in Resources */,
 			);
