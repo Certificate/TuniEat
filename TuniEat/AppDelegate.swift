@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        
         let customTabBar = CustomTabBarController()
+        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
         let nav = UINavigationController(rootViewController: customTabBar)
         
         if #available(iOS 11.0, *) {

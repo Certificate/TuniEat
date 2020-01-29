@@ -15,34 +15,22 @@ class MenuCell : UITableViewCell{
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
         return label
     }()
     
-    let foodComponent1:UILabel = {
+    let foodComponents:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let foodComponent2:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let foodComponent3:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 4
         return label
     }()
     
     let foodPrice:UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.textColor = UIColor.systemBlue
+        label.textColor = UIColor(named: "MainColor")
         label.clipsToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
