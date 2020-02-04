@@ -19,9 +19,12 @@ class Meal: NSObject {
     var component2: String
     var component3: String
     
-    init(_ name: String, _ price: String, comp1: String = "", comp2: String = "", comp3: String = "") {
+    var sortOrder: Int
+    
+    init(_ sortOrder: Int,_ name: String, _ price: String, comp1: String = "", comp2: String = "", comp3: String = "") {
         
         // Initialize stored properties.
+        self.sortOrder = sortOrder
         self.title = name
         self.price = price
         self.component1 = comp1

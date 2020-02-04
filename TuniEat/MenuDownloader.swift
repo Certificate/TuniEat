@@ -28,14 +28,15 @@ class MenuDownloader{
         self.GetMenu("Minerva", MinervaMenuJSON, finished: { mealList in
             print("Got \(mealList.count) of Minerva meals.")
             self.minervaMenu = mealList
+            self.minervaMenu.sort(by: { $0.sortOrder < $1.sortOrder })
             print("[Delegate]: Minerva menu ready.")
             self.delegate?.didFinishMinervaDownload(sender: self)
         })
         
         self.GetMenu("Linna", LinnaMenuJSON, finished: { mealList in
             print("Got \(mealList.count) of Linna meals.")
-            
             self.linnaMenu = mealList
+            self.linnaMenu.sort(by: { $0.sortOrder < $1.sortOrder })
             print("[Delegate]: Linna menu ready.")
             self.delegate?.didFinishLinnaDownload(sender: self)
         })
@@ -69,8 +70,10 @@ class MenuDownloader{
                         
                         for menu in linnaMenus.courses{
                             // Sometimes an empty meal is presented. Only let through values with real data.
-                            if(!menu.value.titleEn.isEmpty && !menu.value.price.isEmpty){
-                                meals.append(Meal(menu.value.titleFi, menu.value.price))
+                            if(!menu.value.titleFi.isEmpty){
+                                let sortOrder = Int(menu.key) ?? 99
+                                let price = !menu.value.price.isEmpty ? menu.value.price : "Hintatietoja ei saatavilla"
+                                meals.append(Meal(sortOrder, menu.value.titleFi, price))
                             }
                         }
                     case "Minerva":
@@ -78,8 +81,8 @@ class MenuDownloader{
                         let minervaTodaysMenus = self.extractMenus(menusForDays: minervaMenus.menusForDays)
                         
                         for menu in minervaTodaysMenus{
-                            let price = self.parseMinervaPrices(mealName: menu.name)
-                            meals.append(self.generateMinervaMeal(components: menu.components, price: price))
+                            let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: menu.name)
+                            meals.append(MenuTools.generateMinervaMeal(components: menu.components, price: price, order: order))
                         }
                     default:
                         print("No such restaurant found.")
@@ -94,67 +97,6 @@ class MenuDownloader{
            }
            task.resume()
         }
-    }
-    
-    // It ain't pretty but it works
-    private func parseMinervaPrices(mealName:String) -> String{
-        var price = ""
-        
-        if (mealName.contains("BISTRO")){
-            price = "4,95€ / 7,75€"
-        }
-        
-        if (mealName.contains("Kasvislounas") || mealName.contains("Lounas")){
-            price = "2,60€ / 6,00€"
-        }
-        
-        if (mealName.contains("Kasviskeitto")){
-            price = "2,27€ / 4,80€"
-        }
-        
-        if (mealName.contains("Kasviskeitto")){
-            price = "2,27€ / 4,80€"
-        }
-        
-        if (mealName.contains("Fresh salaattibuffet")){
-            price = "3,75€ / 6,50€"
-        }
-        
-        if (mealName.contains("Jälkiruoka")){
-            price = "1,05€ / 1,95€"
-        }
-        
-        return price
-    }
-    
-    private func generateMinervaMeal(components: [String], price: String) -> Meal {
-        
-        switch components.count {
-        case 2:
-            let title = cleanMinerva(fullName: components[0])
-            let component1 = cleanMinerva(fullName: components[1])
-            return Meal(title, price, comp1: component1)
-        case 3:
-            let title = cleanMinerva(fullName: components[0])
-            let component1 = cleanMinerva(fullName: components[1])
-            let component2 = cleanMinerva(fullName: components[2])
-            return Meal(title, price, comp1: component1, comp2: component2)
-        case 4:
-            let title = cleanMinerva(fullName: components[0])
-            let component1 = cleanMinerva(fullName: components[1])
-            let component2 = cleanMinerva(fullName: components[2])
-            let component3 = cleanMinerva(fullName: components[3])
-            return Meal(title, price, comp1: component1, comp2: component2, comp3: component3)
-        default:
-            let title = cleanMinerva(fullName: components[0])
-            return Meal(title, price)
-        }
-        
-    }
-    
-    private func cleanMinerva(fullName:String) -> String{
-        let strArray = fullName.components(separatedBy: "(")
-        return strArray[0]
     }
     
     private func extractMenus(menusForDays: [MenusForDay]) -> [SetMenu]{
