@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C36F23E99FFE00E01966 /* MenuTools.swift */; };
 		05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05363E9223E174EE00629FA6 /* Colors.xcassets */; };
 		053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A4ABF23AD0B38008262BB /* MenuCell.swift */; };
 		053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FA8239FEECE00A30F6E /* AppDelegate.swift */; };
-		053F3FAF239FEECF00A30F6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053F3FAE239FEECF00A30F6E /* Assets.xcassets */; };
 		053F3FB2239FEECF00A30F6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053F3FB1239FEECF00A30F6E /* Preview Assets.xcassets */; };
 		053F3FB5239FEECF00A30F6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053F3FB3239FEECF00A30F6E /* LaunchScreen.storyboard */; };
 		053F3FBD239FEFDD00A30F6E /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FBC239FEFDD00A30F6E /* CustomTabBarController.swift */; };
@@ -21,15 +21,16 @@
 		053F3FC8239FFD5F00A30F6E /* LinnaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */; };
 		053F3FCB23A002E700A30F6E /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FCA23A002E700A30F6E /* Meal.swift */; };
 		055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E09C523A41BD500378F36 /* MinervaMenu.swift */; };
+		05852FE023E1BF9C004457D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05852FDF23E1BF9C004457D1 /* Assets.xcassets */; };
 		93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0513C36F23E99FFE00E01966 /* MenuTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTools.swift; sourceTree = "<group>"; };
 		05363E9223E174EE00629FA6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		053A4ABF23AD0B38008262BB /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		053F3FA5239FEECE00A30F6E /* TuniEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuniEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053F3FA8239FEECE00A30F6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		053F3FAE239FEECF00A30F6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		053F3FB1239FEECF00A30F6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		053F3FB4239FEECF00A30F6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		053F3FB6239FEECF00A30F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +42,7 @@
 		053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinnaMenu.swift; sourceTree = "<group>"; };
 		053F3FCA23A002E700A30F6E /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		055E09C523A41BD500378F36 /* MinervaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinervaMenu.swift; sourceTree = "<group>"; };
+		05852FDF23E1BF9C004457D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../Downloads/AppIcons/Assets.xcassets; sourceTree = "<group>"; };
 		071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuniEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.release.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.release.xcconfig"; sourceTree = "<group>"; };
 		F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.debug.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		05363E9423E174F600629FA6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				05852FDF23E1BF9C004457D1 /* Assets.xcassets */,
 				05363E9223E174EE00629FA6 /* Colors.xcassets */,
 			);
 			path = Assets;
@@ -103,11 +106,11 @@
 				053F3FC923A002DA00A30F6E /* ViewModels */,
 				053F3FC6239FFD5100A30F6E /* Menus */,
 				053F3FA8239FEECE00A30F6E /* AppDelegate.swift */,
-				053F3FAE239FEECF00A30F6E /* Assets.xcassets */,
 				053F3FB3239FEECF00A30F6E /* LaunchScreen.storyboard */,
 				053F3FB6239FEECF00A30F6E /* Info.plist */,
 				053F3FB0239FEECF00A30F6E /* Preview Content */,
 				053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */,
+				0513C36F23E99FFE00E01966 /* MenuTools.swift */,
 			);
 			path = TuniEat;
 			sourceTree = "<group>";
@@ -226,7 +229,7 @@
 				053F3FB5239FEECF00A30F6E /* LaunchScreen.storyboard in Resources */,
 				05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */,
 				053F3FB2239FEECF00A30F6E /* Preview Assets.xcassets in Resources */,
-				053F3FAF239FEECF00A30F6E /* Assets.xcassets in Resources */,
+				05852FE023E1BF9C004457D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +288,7 @@
 				053F3FCB23A002E700A30F6E /* Meal.swift in Sources */,
 				053F3FC1239FF2E900A30F6E /* HervantaViewController.swift in Sources */,
 				055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */,
+				0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */,
 				053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */,
 				053F3FBD239FEFDD00A30F6E /* CustomTabBarController.swift in Sources */,
 				053F3FBF239FF03700A30F6E /* CentrumViewController.swift in Sources */,
