@@ -60,6 +60,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0532770723FC10BE002DC1BF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */,
+				0513C36F23E99FFE00E01966 /* MenuTools.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		05363E9423E174F600629FA6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +110,7 @@
 		053F3FA7239FEECE00A30F6E /* TuniEat */ = {
 			isa = PBXGroup;
 			children = (
+				0532770723FC10BE002DC1BF /* Utils */,
 				05363E9423E174F600629FA6 /* Assets */,
 				05D877F323A1985D00253288 /* UI */,
 				053F3FC923A002DA00A30F6E /* ViewModels */,
@@ -109,8 +119,6 @@
 				053F3FB3239FEECF00A30F6E /* LaunchScreen.storyboard */,
 				053F3FB6239FEECF00A30F6E /* Info.plist */,
 				053F3FB0239FEECF00A30F6E /* Preview Content */,
-				053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */,
-				0513C36F23E99FFE00E01966 /* MenuTools.swift */,
 			);
 			path = TuniEat;
 			sourceTree = "<group>";
