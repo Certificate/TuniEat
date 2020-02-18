@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C36F23E99FFE00E01966 /* MenuTools.swift */; };
+		0532770B23FC12D5002DC1BF /* JuvenesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */; };
 		05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05363E9223E174EE00629FA6 /* Colors.xcassets */; };
 		053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A4ABF23AD0B38008262BB /* MenuCell.swift */; };
 		053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FA8239FEECE00A30F6E /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		0513C36F23E99FFE00E01966 /* MenuTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTools.swift; sourceTree = "<group>"; };
+		0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuvenesMenu.swift; sourceTree = "<group>"; };
 		05363E9223E174EE00629FA6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		053A4ABF23AD0B38008262BB /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		053F3FA5239FEECE00A30F6E /* TuniEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuniEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 			children = (
 				053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */,
 				055E09C523A41BD500378F36 /* MinervaMenu.swift */,
+				0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				053F3FC5239FF7EC00A30F6E /* MenuDownloader.swift in Sources */,
 				053F3FC8239FFD5F00A30F6E /* LinnaMenu.swift in Sources */,
 				053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */,
+				0532770B23FC12D5002DC1BF /* JuvenesMenu.swift in Sources */,
 				053F3FCB23A002E700A30F6E /* Meal.swift in Sources */,
 				053F3FC1239FF2E900A30F6E /* HervantaViewController.swift in Sources */,
 				055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */,

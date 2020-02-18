@@ -18,6 +18,7 @@ class MenuDownloader{
     
     weak var delegate:MenuDownloaderDelegate?
     
+    let JuvenesBaseUrl = "https://www.juvenes.fi/DesktopModules/Talents.LunchMenu/LunchMenuServices.asmx/GetMenuByWeekday?KitchenId=13&MenuTypeId=60&Week=9&Weekday=2&lang=fi"
     let LinnaMenuJSON = "https://www.sodexo.fi/ruokalistat/output/daily_json/116/"
     let MinervaMenuJSON = "https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=0815&language=fi"
     
@@ -39,6 +40,14 @@ class MenuDownloader{
             self.linnaMenu.sort(by: { $0.sortOrder < $1.sortOrder })
             print("[Delegate]: Linna menu ready.")
             self.delegate?.didFinishLinnaDownload(sender: self)
+        })
+        
+        self.GetMenu("Juvenes", JuvenesBaseUrl, finished: { mealList in
+            print("Got \(mealList.count) of Juvenes meals.")
+            //self.linnaMenu = mealList
+            //self.linnaMenu.sort(by: { $0.sortOrder < $1.sortOrder })
+            print("[Delegate]: Juvenes menu ready.")
+            //self.delegate?.didFinishLinnaDownload(sender: self)
         })
         
     }
@@ -65,6 +74,16 @@ class MenuDownloader{
                     var meals: [Meal] = []
                     
                     switch RestaurantName {
+                    case "Juvenes":
+                        do {
+                            let contents = try String(contentsOf: url)
+                            let jsonString = MenuTools.extractJSONFromJuvenesXML(contents)
+                            let jsonData = Data(jsonString.utf8)
+                            let juveMenus = try jsonDecoder.decode(JuvenesMenu.self, from: jsonData)
+                            
+                        } catch {
+                            print("Error when parsing Juvenes meals.")
+                        }
                     case "Linna":
                         let linnaMenus = try jsonDecoder.decode(LinnaMenu.self, from: data)
                         

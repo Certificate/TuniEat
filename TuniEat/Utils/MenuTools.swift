@@ -78,4 +78,10 @@ class MenuTools{
         return strArray[0]
     }
     
+    class func extractJSONFromJuvenesXML(_ result:String) -> String {
+        let firstExtract = result.dropLast(9)
+        let secondExtract = firstExtract.dropFirst(81)
+        return String(secondExtract)
+    }
+    
 }
