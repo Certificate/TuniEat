@@ -51,6 +51,28 @@ class MenuTools{
     class func generateMinervaMeal(components: [String], price: String, order: Int) -> Meal {
         
         switch components.count {
+        case 0:
+            
+            var title = ""
+            
+            switch (order){
+            case 1:
+                title = "Kasviskeitto"
+            case 2:
+                title = "Kasvislounas"
+            case 3:
+                title = "Lounas"
+            case 4:
+                title = "Salaattibuffet"
+            case 5:
+                title = "Bistro"
+            case 6:
+                title = "Jälkiruoka"
+            default:
+                title = "Tietoja ei saatavilla"
+            }
+
+            return Meal(order, title, price)
         case 2:
             let title = cleanMinerva(fullName: components[0])
             let component1 = cleanMinerva(fullName: components[1])
@@ -82,6 +104,13 @@ class MenuTools{
         let firstExtract = result.dropLast(9)
         let secondExtract = firstExtract.dropFirst(81)
         return String(secondExtract)
+    }
+    
+    class func GetCurrentDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let result = formatter.string(from: Date())
+        return result
     }
     
 }

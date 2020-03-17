@@ -17,8 +17,8 @@ protocol MenuDownloaderDelegate: AnyObject {
 class MenuDownloader{
     
     weak var delegate:MenuDownloaderDelegate?
+    let JUG = JuvenesUrlGenerator()
     
-    let JuvenesBaseUrl = "https://www.juvenes.fi/DesktopModules/Talents.LunchMenu/LunchMenuServices.asmx/GetMenuByWeekday?KitchenId=13&MenuTypeId=60&Week=9&Weekday=2&lang=fi"
     let LinnaMenuJSON = "https://www.sodexo.fi/ruokalistat/output/daily_json/116/"
     let MinervaMenuJSON = "https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=0815&language=fi"
     
@@ -42,7 +42,7 @@ class MenuDownloader{
             self.delegate?.didFinishLinnaDownload(sender: self)
         })
         
-        self.GetMenu("Juvenes", JuvenesBaseUrl, finished: { mealList in
+        self.GetMenu("Juvenes", JUG.GenerateUrl(.YliopistonRavintola), finished: { mealList in
             print("Got \(mealList.count) of Juvenes meals.")
             //self.linnaMenu = mealList
             //self.linnaMenu.sort(by: { $0.sortOrder < $1.sortOrder })
@@ -52,16 +52,9 @@ class MenuDownloader{
         
     }
     
-    func GetCurrentDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let result = formatter.string(from: Date())
-        return result
-    }
-    
     private func GetMenu(_ RestaurantName: String, _ requestURL: String, finished: @escaping(_ mealList: [Meal]) -> Void){
         
-        let address = RestaurantName == "Linna" ? requestURL + GetCurrentDate() : requestURL
+        let address = RestaurantName == "Linna" ? requestURL + MenuTools.GetCurrentDate() : requestURL
         
         print("Downloading menu from \(address)")
         
@@ -80,7 +73,7 @@ class MenuDownloader{
                             let jsonString = MenuTools.extractJSONFromJuvenesXML(contents)
                             let jsonData = Data(jsonString.utf8)
                             let juveMenus = try jsonDecoder.decode(JuvenesMenu.self, from: jsonData)
-                            
+                            print("yeet")
                         } catch {
                             print("Error when parsing Juvenes meals.")
                         }
@@ -141,7 +134,7 @@ class MenuDownloader{
         let result = formatter.string(from: date)
         
         // Compare today's date and recently converted date in "yyyy-MM-dd" format
-        return GetCurrentDate() == result
+        return MenuTools.GetCurrentDate() == result
     }
     
 
