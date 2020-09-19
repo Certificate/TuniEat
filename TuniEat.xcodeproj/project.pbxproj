@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0510A6F82516AD6200E95098 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0510A6F72516AD6100E95098 /* Media.xcassets */; };
 		0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C36F23E99FFE00E01966 /* MenuTools.swift */; };
 		0532770B23FC12D5002DC1BF /* JuvenesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */; };
 		05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05363E9223E174EE00629FA6 /* Colors.xcassets */; };
@@ -23,11 +24,11 @@
 		053F3FCB23A002E700A30F6E /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FCA23A002E700A30F6E /* Meal.swift */; };
 		0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */; };
 		055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E09C523A41BD500378F36 /* MinervaMenu.swift */; };
-		05852FE023E1BF9C004457D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05852FDF23E1BF9C004457D1 /* Assets.xcassets */; };
 		93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0510A6F72516AD6100E95098 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		0513C36F23E99FFE00E01966 /* MenuTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTools.swift; sourceTree = "<group>"; };
 		0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuvenesMenu.swift; sourceTree = "<group>"; };
 		05363E9223E174EE00629FA6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		053F3FCA23A002E700A30F6E /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuvenesUrlGenerator.swift; sourceTree = "<group>"; };
 		055E09C523A41BD500378F36 /* MinervaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinervaMenu.swift; sourceTree = "<group>"; };
-		05852FDF23E1BF9C004457D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../Downloads/AppIcons/Assets.xcassets; sourceTree = "<group>"; };
 		071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuniEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.release.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.release.xcconfig"; sourceTree = "<group>"; };
 		F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.debug.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,8 +77,8 @@
 		05363E9423E174F600629FA6 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				05852FDF23E1BF9C004457D1 /* Assets.xcassets */,
 				05363E9223E174EE00629FA6 /* Colors.xcassets */,
+				0510A6F72516AD6100E95098 /* Media.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -240,10 +240,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0510A6F82516AD6200E95098 /* Media.xcassets in Resources */,
 				053F3FB5239FEECF00A30F6E /* LaunchScreen.storyboard in Resources */,
 				05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */,
 				053F3FB2239FEECF00A30F6E /* Preview Assets.xcassets in Resources */,
-				05852FE023E1BF9C004457D1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
