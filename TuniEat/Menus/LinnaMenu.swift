@@ -8,8 +8,6 @@
 
 import Foundation
 
-//let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
-
 // MARK: - MenuRoot
 struct LinnaMenu: Codable {
     let meta: Meta
