@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum RestaurantParseError: Error {
+    case noDateFound
+    case invalidInfo
+}
+
 class RestaurantParser {
 
     private let jsonDecoder = JSONDecoder()
@@ -36,7 +41,7 @@ class RestaurantParser {
             }
             else{
                 print("No meals available. Appending filler.")
-                meals.append(generateErrorMeal())
+                meals.append(generateEmptyMeal())
             }
         } catch {
             meals.append(generateErrorMeal())
@@ -49,7 +54,7 @@ class RestaurantParser {
         var meals: [Meal] = []
         do {
             let minervaMenus = try jsonDecoder.decode(MinervaMenu.self, from: data)
-            let minervaTodaysMenus = MenuTools.extractMenus(menusForDays: minervaMenus.menusForDays)
+            let minervaTodaysMenus = MenuTools.extractMinervaMenus(menusForDays: minervaMenus.menusForDays)
             if !minervaTodaysMenus.isEmpty {
                 for menu in minervaTodaysMenus{
                     let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: menu.name)
@@ -69,15 +74,34 @@ class RestaurantParser {
     func parseYliopistonRavintola(_ data: Data) -> [Meal] {
         var meals: [Meal] = []
         do {
-            let minervaMenus = try jsonDecoder.decode(YRMenu.self, from: data)
+            let yrMenus = try jsonDecoder.decode(YRMenu.self, from: data)
             
-            meals.append(generateEmptyMeal())
+            guard let days = yrMenus[0].menuTypes?[0].menus?[0].days else {
+                return [generateErrorMeal()]
+            }
+            
+            let mealOptions = try MenuTools.extractJuvenesMeals(days)
+            
+            for meal in mealOptions {
+                guard let mealName = meal.name else{
+                    throw RestaurantParseError.invalidInfo
+                }
+
+                guard let menuItemsList = meal.menuItems else {
+                    throw RestaurantParseError.invalidInfo
+                }
+                
+                try meals.append(MenuTools.generateJuvenesMeal(name: mealName, orderNumber: meal.orderNumber ?? 99, menuItems: menuItemsList))
+            }
+            
         } catch {
             meals.append(generateErrorMeal())
             print("Error while parsing Yliopiston Ravintola meals: \(error)")
         }
         
-
         return meals
     }
+    
+    
+    
 }
