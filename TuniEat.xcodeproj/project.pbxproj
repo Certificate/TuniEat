@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0510A6F82516AD6200E95098 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0510A6F72516AD6100E95098 /* Media.xcassets */; };
+		0510A7002517AF6400E95098 /* RestaurantParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0510A6FF2517AF6400E95098 /* RestaurantParser.swift */; };
 		0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C36F23E99FFE00E01966 /* MenuTools.swift */; };
-		0532770B23FC12D5002DC1BF /* JuvenesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */; };
+		0532770B23FC12D5002DC1BF /* YRMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532770A23FC12D5002DC1BF /* YRMenu.swift */; };
 		05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05363E9223E174EE00629FA6 /* Colors.xcassets */; };
 		053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A4ABF23AD0B38008262BB /* MenuCell.swift */; };
 		053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F3FA8239FEECE00A30F6E /* AppDelegate.swift */; };
@@ -25,12 +26,14 @@
 		0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */; };
 		055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E09C523A41BD500378F36 /* MinervaMenu.swift */; };
 		93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */; };
+		E945BDB54879F993A9C09849 /* URLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945B8C0C570EF843F54DFF4 /* URLStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0510A6F72516AD6100E95098 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		0510A6FF2517AF6400E95098 /* RestaurantParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantParser.swift; sourceTree = "<group>"; };
 		0513C36F23E99FFE00E01966 /* MenuTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTools.swift; sourceTree = "<group>"; };
-		0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuvenesMenu.swift; sourceTree = "<group>"; };
+		0532770A23FC12D5002DC1BF /* YRMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YRMenu.swift; sourceTree = "<group>"; };
 		05363E9223E174EE00629FA6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		053A4ABF23AD0B38008262BB /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		053F3FA5239FEECE00A30F6E /* TuniEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuniEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +52,7 @@
 		055E09C523A41BD500378F36 /* MinervaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinervaMenu.swift; sourceTree = "<group>"; };
 		071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuniEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.release.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.release.xcconfig"; sourceTree = "<group>"; };
+		E945B8C0C570EF843F54DFF4 /* URLStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStorage.swift; sourceTree = "<group>"; };
 		F91B6DA7B4B59B21A9F2202F /* Pods-TuniEat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.debug.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,12 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0510A6FB2517ABEC00E95098 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				053A4ABF23AD0B38008262BB /* MenuCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0532770723FC10BE002DC1BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				053F3FC4239FF7EC00A30F6E /* MenuDownloader.swift */,
 				0513C36F23E99FFE00E01966 /* MenuTools.swift */,
 				0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */,
+				0510A6FF2517AF6400E95098 /* RestaurantParser.swift */,
+				E945B8C0C570EF843F54DFF4 /* URLStorage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -141,7 +155,7 @@
 			children = (
 				053F3FC7239FFD5F00A30F6E /* LinnaMenu.swift */,
 				055E09C523A41BD500378F36 /* MinervaMenu.swift */,
-				0532770A23FC12D5002DC1BF /* JuvenesMenu.swift */,
+				0532770A23FC12D5002DC1BF /* YRMenu.swift */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -157,8 +171,8 @@
 		05D877F323A1985D00253288 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0510A6FB2517ABEC00E95098 /* Cells */,
 				05363E9523E1782C00629FA6 /* ViewControllers */,
-				053A4ABF23AD0B38008262BB /* MenuCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -296,10 +310,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0510A7002517AF6400E95098 /* RestaurantParser.swift in Sources */,
 				053F3FC5239FF7EC00A30F6E /* MenuDownloader.swift in Sources */,
 				053F3FC8239FFD5F00A30F6E /* LinnaMenu.swift in Sources */,
 				053F3FA9239FEECE00A30F6E /* AppDelegate.swift in Sources */,
-				0532770B23FC12D5002DC1BF /* JuvenesMenu.swift in Sources */,
+				0532770B23FC12D5002DC1BF /* YRMenu.swift in Sources */,
 				053F3FCB23A002E700A30F6E /* Meal.swift in Sources */,
 				053F3FC1239FF2E900A30F6E /* HervantaViewController.swift in Sources */,
 				055E09C623A41BD500378F36 /* MinervaMenu.swift in Sources */,
@@ -309,6 +324,7 @@
 				0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */,
 				053F3FBF239FF03700A30F6E /* CentrumViewController.swift in Sources */,
 				053F3FC3239FF31400A30F6E /* TAYSViewController.swift in Sources */,
+				E945BDB54879F993A9C09849 /* URLStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,36 +9,31 @@
 import Foundation
 
 class JuvenesUrlGenerator{
+    
+    private enum JuvenesKitchenID: Int{
+        case YliopistonRavintola = 13
+        case Newton = 6
+        case Arvo = 5
+        case Unknown = -1
+    }
+    
+    class func GenerateUrl(_ restaurant: Restaurant) -> String {
         
-    enum Kitchen {
-        case YliopistonRavintola
+        let kitchen = getKitchenId(restaurant)
+    
+        return "http://fi.jamix.cloud/apps/menuservice/rest/haku/menu/12347/\(kitchen.rawValue)?lang=fi"
     }
     
-    let MenuType = 60
-    let JuvenesBaseUrl = "https://www.juvenes.fi/DesktopModules/Talents.LunchMenu/LunchMenuServices.asmx/GetMenuByWeekday?"
-    
-    func GenerateUrl(_ kitchen: Kitchen) -> String {
-        let week = NSCalendar.current.component(.weekOfYear, from: Date())
-        let weekday = getDayOfWeek(MenuTools.GetCurrentDate()) ?? 0
-        
-        return JuvenesBaseUrl + "KitchenId=\(GetKitchenId(kitchen))&MenuTypeId=\(MenuType)&Week=\(week)&Weekday=\(weekday)&lang=fi"
-    }
-
-    private func getDayOfWeek(_ today:String) -> Int? {
-        let formatter  = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        guard let todayDate = formatter.date(from: today) else { return nil }
-        let myCalendar = Calendar(identifier: .gregorian)
-        let weekDay = myCalendar.component(.weekday, from: todayDate)
-        return weekDay - 1
-    }
-    
-    private func GetKitchenId(_ kitchen: Kitchen) -> Int {
-        switch(kitchen){
+    private class func getKitchenId(_ restaurant: Restaurant) -> JuvenesKitchenID {
+        switch restaurant {
         case .YliopistonRavintola:
-            return 13
+            return JuvenesKitchenID.YliopistonRavintola
+        case .Newton:
+            return JuvenesKitchenID.Newton
+        case .Arvo:
+            return JuvenesKitchenID.Arvo
         default:
-            return 0
+            return JuvenesKitchenID.Unknown
         }
     }
 }

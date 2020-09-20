@@ -11,7 +11,7 @@ import Foundation
 // MARK: - MenuRoot
 struct LinnaMenu: Codable {
     let meta: Meta
-    let courses: [String: Course]
+    let courses: [String: Course]?
 }
 
 // MARK: - Course

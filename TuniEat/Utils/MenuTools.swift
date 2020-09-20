@@ -110,7 +110,34 @@ class MenuTools{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let result = formatter.string(from: Date())
+        //return "2020-09-18"
         return result
+    }
+
+    class func compareDateToToday(_ strDate: String) -> Bool{
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        let date = dateFormatter.date(from:strDate)!
+
+        // Date -> String
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let result = formatter.string(from: date)
+
+        // Compare today's date and recently converted date in "yyyy-MM-dd" format
+        return MenuTools.GetCurrentDate() == result
+    }
+
+    class func extractMenus(menusForDays: [MenusForDay]) -> [SetMenu]{
+        var arr: [SetMenu] = []
+        for menu in menusForDays{
+            if(compareDateToToday(menu.date)){
+                arr = menu.setMenus
+            }
+        }
+        return arr
     }
     
     
