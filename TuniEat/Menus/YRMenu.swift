@@ -5,19 +5,17 @@
 //  Created by Valtteri Vuori on 18.2.2020.
 //  Copyright © 2020 Valtteri Vuori. All rights reserved.
 //
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
 
 
 import Foundation
 
 // MARK: - YRMenuElement
 struct YRMenuElement: Codable {
-    let kitchenName: String
-    let kitchenID: Int
-    let address, city, email, phone: String
-    let info: String
-    let menuTypes: [MenuType]
+    let kitchenName: String?
+    let kitchenID: Int?
+    let address, city, email, phone: String?
+    let info: String?
+    let menuTypes: [MenuType]?
 
     enum CodingKeys: String, CodingKey {
         case kitchenName
@@ -28,9 +26,9 @@ struct YRMenuElement: Codable {
 
 // MARK: - MenuType
 struct MenuType: Codable {
-    let menuTypeID: Int
-    let menuTypeName: String
-    let menus: [Menu]
+    let menuTypeID: Int?
+    let menuTypeName: String?
+    let menus: [Menu]?
 
     enum CodingKeys: String, CodingKey {
         case menuTypeID
@@ -40,9 +38,9 @@ struct MenuType: Codable {
 
 // MARK: - Menu
 struct Menu: Codable {
-    let menuName, menuAdditionalName: String
-    let menuID: Int
-    let days: [Day]
+    let menuName, menuAdditionalName: String?
+    let menuID: Int?
+    let days: [Day]?
 
     enum CodingKeys: String, CodingKey {
         case menuName, menuAdditionalName
@@ -53,23 +51,29 @@ struct Menu: Codable {
 
 // MARK: - Day
 struct Day: Codable {
-    let date, weekday: Int
-    let mealoptions: [Mealoption]
+    let date, weekday: Int?
+    let mealoptions: [MealOption]?
 }
 
 // MARK: - Mealoption
-struct Mealoption: Codable {
-    let name: String
-    let orderNumber, id: Int
-    let menuItems: [MenuItem]
+struct MealOption: Codable {
+    let name: Name?
+    let orderNumber, id: Int?
+    let menuItems: [MenuItem]?
 }
 
 // MARK: - MenuItem
 struct MenuItem: Codable {
-    let name: String
-    let orderNumber: Int
-    let portionSize: Int?
+    let name: String?
+    let orderNumber, portionSize: Int?
     let diets, ingredients: String?
+}
+
+enum Name: String, Codable {
+    case aamiainen = "AAMIAINEN"
+    case lounasI = "LOUNAS I"
+    case lounasIi = "LOUNAS II"
+    case lounasKasvis = "LOUNAS KASVIS"
 }
 
 typealias YRMenu = [YRMenuElement]
