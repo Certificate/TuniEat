@@ -44,37 +44,30 @@ class MenuTools{
     class func parseMinervaPricesAndOrder(mealName:String) -> (String, Int){
         var price = ""
         var sortOrder = 0
-        
-        if (mealName.lowercased().contains("bistro")){
-            price = "4,95€ / 7,75€"
-            sortOrder = 5
-        }
-        
-        if (mealName.lowercased().contains("kasvislounas")){
-            price = "2,60€ / 6,00€"
-            sortOrder = 2
-        }
-        
-        if (mealName.lowercased().contains("kasviskeitto")){
-            price = "2,27€ / 4,80€"
+
+        switch mealName {
+        case let str where str.lowercased().contains("kasviskeitto"):
+            price = "2,30€ / 4,90€"
             sortOrder = 1
-        }
-        
-        if (mealName.lowercased().contains("lounas")){
-            price = "2,60€ / 6,00€"
+        case let str where str.lowercased().contains("kasvislounas"):
+            price = "3,06€ / 6,10€"
+            sortOrder = 2
+        case let str where str.lowercased().contains("lounas"):
+            price = "3,06€ / 6,10€"
             sortOrder = 3
-        }
-        
-        if (mealName.lowercased().contains("salaattibuffet")){
+        case let str where str.lowercased().contains("salaattibuffet"):
             price = "3,75€ / 6,50€"
             sortOrder = 4
-        }
-        
-        if (mealName.lowercased().contains("jälkiruoka")){
-            price = "1,05€ / 1,95€"
+        case let str where str.lowercased().contains("bistro"):
+            price = "4,95€ / 7,75€"
+            sortOrder = 5
+        case let str where str.lowercased().contains("jälkiruoka"):
+            price = "1,20€ / 2,20€"
             sortOrder = 6
+        default:
+            price = "-€"
+            sortOrder = 99
         }
-        
         return (price, sortOrder)
     }
     

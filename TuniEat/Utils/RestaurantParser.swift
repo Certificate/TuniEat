@@ -53,12 +53,18 @@ class RestaurantParser {
     func parseMinerva(_ data: Data) -> [Meal] {
         var meals: [Meal] = []
         do {
-            let minervaMenus = try jsonDecoder.decode(MinervaMenu.self, from: data)
+            let minervaMenus = try jsonDecoder.decode(FazerMenu.self, from: data)
             let minervaTodaysMenus = MenuTools.extractMinervaMenus(menusForDays: minervaMenus.menusForDays)
             if !minervaTodaysMenus.isEmpty {
                 for menu in minervaTodaysMenus{
-                    let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: menu.name)
-                    meals.append(MenuTools.generateMinervaMeal(components: menu.components, price: price, order: order))
+                    if let menuName = menu.name {
+                        let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: menuName)
+                        meals.append(MenuTools.generateMinervaMeal(components: menu.components, price: price, order: order))
+                    }
+                    else {
+                        let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: "Unknown")
+                        meals.append(MenuTools.generateMinervaMeal(components: menu.components, price: price, order: order))
+                    }
                 }
             }
             else {

@@ -1,9 +1,7 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-
 import Foundation
 
-// MARK: - MinervaMenu
-struct MinervaMenu: Codable {
+// MARK: - FazerMenu
+struct FazerMenu: Codable {
     let restaurantName: String
     let restaurantURL: String
     let priceHeader: JSONNull?
@@ -37,7 +35,7 @@ struct MenusForDay: Codable {
 // MARK: - SetMenu
 struct SetMenu: Codable {
     let sortOrder: Int
-    let name: String
+    let name: String?
     let price: JSONNull?
     let components: [String]
 
@@ -59,6 +57,10 @@ class JSONNull: Codable, Hashable {
 
     public var hashValue: Int {
         return 0
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        // No-op
     }
 
     public init() {}
