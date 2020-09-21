@@ -8,28 +8,25 @@
 
 import UIKit
 
-class CentrumViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, MenuDownloaderDelegate{
+class CentrumViewController : BaseTableViewController, CityCentreMenuDownloaderDelegate{
 
     // Delegate functions
-    func didFinishMinervaDownload(sender: MenuDownloader) {
+    func didFinishMinervaDownload(sender: CityCentreMenuDownloader) {
         minervaMeals = menuDownloader.minervaMenu
-        reloadData()
+        super.reloadData()
     }
     
-    func didFinishLinnaDownload(sender: MenuDownloader) {
+    func didFinishLinnaDownload(sender: CityCentreMenuDownloader) {
         linnaMeals = menuDownloader.linnaMenu
-        reloadData()
+        super.reloadData()
     }
     
-    func didFinishJuvenesDownload(sender: MenuDownloader) {
+    func didFinishJuvenesDownload(sender: CityCentreMenuDownloader) {
         juvenesMeals = menuDownloader.juvenesMenu
-        reloadData()
+        super.reloadData()
     }
     
-    private let refreshControl = UIRefreshControl()
-
-    var tableView = UITableView()
-    let menuDownloader = MenuDownloader()
+    let menuDownloader = CityCentreMenuDownloader()
     
     // Menus
     var linnaMeals: [Meal] = []
@@ -40,43 +37,18 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         menuDownloader.delegate = self
-        
-        setupTableView()
-        setupRefreshControl()
+        refresher.addTarget(self, action: #selector(downloadMenus(_:)), for: .valueChanged)
 
-        menuDownloader.DownloadMenus()
-    }
-    
-    private func setupTableView(){
-        tableView = UITableView(frame: self.view.bounds, style: UITableView.Style.plain)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.allowsSelection = false
-        
-        tableView.register(MenuCell.self, forCellReuseIdentifier: "menuCell")
-        view.addSubview(tableView)
-    }
-    
-    private func setupRefreshControl(){
-        // Add Refresh Control to Table View.
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-        
-        // Configure Refresh Control
-        refreshControl.addTarget(self, action: #selector(downloadMenus(_:)), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "Päivitän ruokalistaa...", attributes:[ NSAttributedString.Key.foregroundColor: UIColor.black ])
+        menuDownloader.DownloadCityCentreMenus()
     }
     
     @objc private func downloadMenus(_ sender: Any) {
-        menuDownloader.DownloadMenus()
+        menuDownloader.DownloadCityCentreMenus()
         
-        self.refreshControl.endRefreshing()
+        self.refresher.endRefreshing()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuCell
         
         if(indexPath.section == 0){
@@ -93,7 +65,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return "Linna"
@@ -106,7 +78,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         switch section {
         case 0:
@@ -121,7 +93,7 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
 
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         var count = 0
         
         if (!linnaMeals.isEmpty) {
@@ -133,13 +105,6 @@ class CentrumViewController : UIViewController, UITableViewDelegate, UITableView
         if (!juvenesMeals.isEmpty) {
             count+=1
         }
-        print("Count is: \(count)")
         return count
-    }
-    
-    func reloadData(){
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }
