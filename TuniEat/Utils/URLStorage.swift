@@ -17,11 +17,11 @@ class URLStorage {
         case .Minerva:
             return "https://www.fazerfoodco.fi/modules/json/json/Index?costNumber=0815&language=fi"
         case .Reaktori:
-            return ""
+            return "https://foodandco.fi/modules/json/json/Index?costNumber=0812&language=fi"
         case .Newton:
-            return ""
+            return JuvenesUrlGenerator.GenerateUrl(.Newton)
         case .Hertsi:
-            return ""
+            return "https://www.sodexo.fi/ruokalistat/output/daily_json/111/" + MenuTools.GetCurrentDate()
         case .Arvo:
             return ""
         }
