@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0510A6F82516AD6200E95098 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0510A6F72516AD6100E95098 /* Media.xcassets */; };
 		0510A7002517AF6400E95098 /* RestaurantParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0510A6FF2517AF6400E95098 /* RestaurantParser.swift */; };
+		0510A7062517E0DB00E95098 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0510A7052517E0DB00E95098 /* BaseTableViewController.swift */; };
 		0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513C36F23E99FFE00E01966 /* MenuTools.swift */; };
 		0532770B23FC12D5002DC1BF /* YRMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0532770A23FC12D5002DC1BF /* YRMenu.swift */; };
 		05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05363E9223E174EE00629FA6 /* Colors.xcassets */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		0510A6F72516AD6100E95098 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		0510A6FF2517AF6400E95098 /* RestaurantParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantParser.swift; sourceTree = "<group>"; };
+		0510A7052517E0DB00E95098 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		0513C36F23E99FFE00E01966 /* MenuTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTools.swift; sourceTree = "<group>"; };
 		0532770A23FC12D5002DC1BF /* YRMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YRMenu.swift; sourceTree = "<group>"; };
 		05363E9223E174EE00629FA6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				053F3FBE239FF03700A30F6E /* CentrumViewController.swift */,
 				053F3FC0239FF2E900A30F6E /* HervantaViewController.swift */,
 				053F3FC2239FF31400A30F6E /* TAYSViewController.swift */,
+				0510A7052517E0DB00E95098 /* BaseTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				055E09C623A41BD500378F36 /* FazerMenu.swift in Sources */,
 				0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */,
 				053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */,
+				0510A7062517E0DB00E95098 /* BaseTableViewController.swift in Sources */,
 				053F3FBD239FEFDD00A30F6E /* CustomTabBarController.swift in Sources */,
 				0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */,
 				053F3FBF239FF03700A30F6E /* CentrumViewController.swift in Sources */,

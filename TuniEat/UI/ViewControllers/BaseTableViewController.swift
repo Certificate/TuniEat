@@ -25,7 +25,7 @@ class BaseTableViewController : UITableViewController{
             tableView.addSubview(refresher)
         }
         
-        refresher.attributedTitle = NSAttributedString(string: "Päivitän ruokalistaa...", attributes:[ NSAttributedString.Key.foregroundColor: UIColor.black ])
+        refresher.attributedTitle = NSAttributedString(string: "Päivitän ruokalistaa...", attributes:[ NSAttributedString.Key.foregroundColor: UIColor(named: "RefreshControlColor") ?? UIColor.lightGray ])
     }
     
     func reloadData(){
