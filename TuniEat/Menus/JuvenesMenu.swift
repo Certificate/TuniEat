@@ -2,15 +2,14 @@
 //  JuvenesMenu.swift
 //  TuniEat
 //
-//  Created by Valtteri Vuori on 18.2.2020.
+//  Created by Valtteri Vuori on 20.9.2020.
 //  Copyright © 2020 Valtteri Vuori. All rights reserved.
 //
 
-
 import Foundation
 
-// MARK: - YRMenuElement
-struct YRMenuElement: Codable {
+// MARK: - JuvenesMenuElement
+struct JuvenesMenuElement: Codable {
     let kitchenName: String?
     let kitchenID: Int?
     let address, city, email, phone: String?
@@ -52,11 +51,11 @@ struct Menu: Codable {
 // MARK: - Day
 struct Day: Codable {
     let date, weekday: Int?
-    let mealoptions: [MealOption]?
+    let mealoptions: [Mealoption]?
 }
 
 // MARK: - Mealoption
-struct MealOption: Codable {
+struct Mealoption: Codable {
     let name: Name?
     let orderNumber, id: Int?
     let menuItems: [MenuItem]?
@@ -74,6 +73,9 @@ enum Name: String, Codable {
     case lounasI = "LOUNAS I"
     case lounasIi = "LOUNAS II"
     case lounasKasvis = "LOUNAS KASVIS"
+    case pizza = "PIZZA"
+    case salaatti = "SALAATTI"
+    case välipala = "VÄLIPALA"
 }
 
-typealias YRMenu = [YRMenuElement]
+typealias JuvenesMenu = [JuvenesMenuElement]

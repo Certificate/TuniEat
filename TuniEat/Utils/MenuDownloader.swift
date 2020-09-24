@@ -8,12 +8,19 @@
 
 import Foundation
 
-protocol MenuDownloaderDelegate: AnyObject {
-    func didFinishLinnaDownload(sender: MenuDownloader)
+protocol CityCentreMenuDownloaderDelegate: AnyObject {
+    // City Centre
+    func didFinishLinnaDownload(sender: CityCentreMenuDownloader)
+    func didFinishMinervaDownload(sender: CityCentreMenuDownloader)
+    func didFinishJuvenesDownload(sender: CityCentreMenuDownloader)
+}
+
+protocol HervantaMenuDownloaderDelegate: AnyObject {
     
-    func didFinishMinervaDownload(sender: MenuDownloader)
-    
-    func didFinishJuvenesDownload(sender: MenuDownloader)
+    // Hervanta
+    func didFinishHertsiDownload(sender: HervantaMenuDownloader)
+    func didFinishReaktoriDownload(sender: HervantaMenuDownloader)
+    func didFinishNewtonDownload(sender: HervantaMenuDownloader)
 }
 
 enum Restaurant {
@@ -22,7 +29,7 @@ enum Restaurant {
     case Linna
     case Minerva
 
-    // Hervanta campuis
+    // Hervanta campus
     case Reaktori
     case Newton
     case Hertsi
@@ -31,18 +38,20 @@ enum Restaurant {
     case Arvo
 }
 
-class MenuDownloader{
-    weak var delegate:MenuDownloaderDelegate?
+class CityCentreMenuDownloader{
+    weak var delegate:CityCentreMenuDownloaderDelegate?
+    
     let restaurantParser = RestaurantParser()
     
 
+    // City Centre
     var linnaMenu: [Meal] = []
     var juvenesMenu: [Meal] = []
     var minervaMenu: [Meal] = []
     
-    func DownloadMenus(){
+    func DownloadCityCentreMenus(){
         
-        print("Downloading new menus!")
+        print("Downloading City Centre menus!")
         
         self.GetMenu(.Minerva, URLStorage.getRestaurantUrl(.Minerva), finished: { mealList in
             print("Got \(mealList.count) of Minerva meals.")
@@ -61,10 +70,10 @@ class MenuDownloader{
         })
         
         self.GetMenu(.YliopistonRavintola, JuvenesUrlGenerator.GenerateUrl(.YliopistonRavintola), finished: { mealList in
-            print("Got \(mealList.count) of Juvenes meals.")
+            print("Got \(mealList.count) of Yliopiston Ravintola meals.")
             self.juvenesMenu = mealList
             self.juvenesMenu.sort(by: { $0.sortOrder < $1.sortOrder })
-            print("[Delegate]: Juvenes menu ready.")
+            print("[Delegate]: Yliopiston Ravintola menu ready.")
             self.delegate?.didFinishJuvenesDownload(sender: self)
         })
 
@@ -78,25 +87,97 @@ class MenuDownloader{
               if let data = data {
                 print("\(RestaurantName) order download successful. Starting parse.")
 
-                do {
-                    var meals: [Meal] = []
-                    
-                    switch RestaurantName {
-                    case .YliopistonRavintola:
-                        meals = self.restaurantParser.parseYliopistonRavintola(data)
-                    case .Linna:
-                        meals = self.restaurantParser.parseLinna(data)
-                    case .Minerva:
-                        meals = self.restaurantParser.parseMinerva(data)
-                    default:
-                        print("No such restaurant found.")
-                    }
-
-                    finished(meals)
-                } catch {
-                    print("Error parsing \(RestaurantName) meals: \(error)")
-                }
+                var meals: [Meal] = []
                 
+                switch RestaurantName {
+                case .YliopistonRavintola:
+                    meals = self.restaurantParser.parseJuvenes(data, .YliopistonRavintola)
+                case .Linna:
+                    meals = self.restaurantParser.parseSodexo(data, .Linna)
+                case .Minerva:
+                    meals = self.restaurantParser.parseFazer(data, .Minerva)
+                default:
+                    print("No such restaurant found.")
+                }
+
+                finished(meals)
+
+               }
+           }
+           task.resume()
+        }
+    }
+
+    
+
+    
+}
+
+class HervantaMenuDownloader{
+    weak var delegate:HervantaMenuDownloaderDelegate?
+    
+    let restaurantParser = RestaurantParser()
+
+    
+    // Hervanta
+    var hertsiMenu: [Meal] = []
+    var newtonMenu: [Meal] = []
+    var reaktoriMenu: [Meal] = []
+    
+    func DownloadHervantaMenus(){
+        
+        print("Downloading Hervanta menus!")
+        
+        self.GetMenu(.Hertsi, URLStorage.getRestaurantUrl(.Hertsi), finished: { mealList in
+            print("Got \(mealList.count) of Hertsi meals.")
+            self.hertsiMenu = mealList
+            self.hertsiMenu.sort(by: { $0.sortOrder < $1.sortOrder })
+            print("[Delegate]: Hertsi menu ready.")
+            self.delegate?.didFinishHertsiDownload(sender: self)
+        })
+        
+        self.GetMenu(.Newton, URLStorage.getRestaurantUrl(.Newton), finished: { mealList in
+            print("Got \(mealList.count) of Newton meals.")
+            self.newtonMenu = mealList
+            self.newtonMenu.sort(by: { $0.sortOrder < $1.sortOrder })
+            print("[Delegate]: Newton menu ready.")
+            self.delegate?.didFinishNewtonDownload(sender: self)
+        })
+        
+        self.GetMenu(.Reaktori, URLStorage.getRestaurantUrl(.Reaktori), finished: { mealList in
+            print("Got \(mealList.count) of Reaktori meals.")
+            self.reaktoriMenu = mealList
+            self.reaktoriMenu.sort(by: { $0.sortOrder < $1.sortOrder })
+            print("[Delegate]: Reaktori menu ready.")
+            self.delegate?.didFinishReaktoriDownload(sender: self)
+        })
+
+    }
+    
+    private func GetMenu(_ RestaurantName: Restaurant, _ requestURL: String, finished: @escaping(_ mealList: [Meal]) -> Void){
+        
+        print("Downloading menu from \(requestURL)")
+        if let url = URL(string: requestURL) {
+           let task = URLSession.shared.dataTask(with: url) { data, response, error in
+              if let data = data {
+                print("\(RestaurantName) order download successful. Starting parse.")
+
+                var meals: [Meal] = []
+                
+                switch RestaurantName {
+                case .Newton:
+                    meals = self.restaurantParser.parseJuvenes(data, .Newton)
+                    print("jaa")
+                case .Hertsi:
+                    meals = self.restaurantParser.parseSodexo(data, .Hertsi)
+                case .Reaktori:
+                    meals = self.restaurantParser.parseFazer(data, .Reaktori)
+                default:
+                    print("No such restaurant found.")
+                }
+
+                finished(meals)
+
                }
            }
            task.resume()

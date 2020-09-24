@@ -25,7 +25,7 @@ class RestaurantParser {
         Meal(0, "Virhe ruokatietoja hakiessa.", " ")
     }
     
-    func parseLinna(_ data: Data) -> [Meal] {
+    func parseSodexo(_ data: Data, _ restaurant:Restaurant) -> [Meal] {
         var meals: [Meal] = []
         do {
             let linnaMenus = try jsonDecoder.decode(LinnaMenu.self, from: data)
@@ -34,7 +34,7 @@ class RestaurantParser {
                     // Sometimes an empty meal is presented. Only let through values with real data.
                     if(!menu.value.titleFi.isEmpty){
                         let sortOrder = Int(menu.key) ?? 99
-                        let price = !menu.value.price.isEmpty ? menu.value.price : "Hintatietoja ei saatavilla"
+                        let price = !menu.value.price.isEmpty ? MenuTools.parseSodexoPrices(menu.value.price) : "Hintatietoja ei saatavilla"
                         meals.append(Meal(sortOrder, menu.value.titleFi, price))
                     }
                 }
@@ -45,25 +45,25 @@ class RestaurantParser {
             }
         } catch {
             meals.append(generateErrorMeal())
-            print("Error while parsing Linna meals: \(error)")
+            print("Error while parsing \(restaurant) meals: \(error)")
         }
         return meals
     }
 
-    func parseMinerva(_ data: Data) -> [Meal] {
+    func parseFazer(_ data: Data, _ restaurant:Restaurant) -> [Meal] {
         var meals: [Meal] = []
         do {
-            let minervaMenus = try jsonDecoder.decode(FazerMenu.self, from: data)
-            let minervaTodaysMenus = MenuTools.extractMinervaMenus(menusForDays: minervaMenus.menusForDays)
-            if !minervaTodaysMenus.isEmpty {
-                for menu in minervaTodaysMenus{
+            let fazerMenus = try jsonDecoder.decode(FazerMenu.self, from: data)
+            let fazerTodaysMenus = MenuTools.extractFazerMenus(menusForDays: fazerMenus.menusForDays)
+            if !fazerTodaysMenus.isEmpty {
+                for menu in fazerTodaysMenus{
                     if let menuName = menu.name {
-                        let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: menuName)
-                        meals.append(MenuTools.generateMinervaMeal(components: menu.components, price: price, order: order))
+                        let (price, order) = MenuTools.parseFazerPricesAndOrder(mealName: menuName, restaurant: restaurant)
+                        meals.append(MenuTools.generateFazerMeal(components: menu.components, price: price, order: order))
                     }
                     else {
-                        let (price, order) = MenuTools.parseMinervaPricesAndOrder(mealName: "Unknown")
-                        meals.append(MenuTools.generateMinervaMeal(components: menu.components, price: price, order: order))
+                        let (price, order) = MenuTools.parseFazerPricesAndOrder(mealName: "Unknown", restaurant: restaurant)
+                        meals.append(MenuTools.generateFazerMeal(components: menu.components, price: price, order: order))
                     }
                 }
             }
@@ -72,33 +72,39 @@ class RestaurantParser {
             }
         } catch {
             meals.append(generateErrorMeal())
-            print("Error while parsing Minerva meals: \(error)")
+            print("Error while parsing Fazer meals for \(restaurant): \(error)")
         }
         return meals
     }
 
-    func parseYliopistonRavintola(_ data: Data) -> [Meal] {
+    func parseJuvenes(_ data: Data, _ restaurant: Restaurant) -> [Meal] {
         var meals: [Meal] = []
         do {
-            let yrMenus = try jsonDecoder.decode(YRMenu.self, from: data)
+            let yrMenus = try jsonDecoder.decode(JuvenesMenu.self, from: data)
             
-            guard let days = yrMenus[0].menuTypes?[0].menus?[0].days else {
-                return [generateErrorMeal()]
-            }
-            
-            let mealOptions = try MenuTools.extractJuvenesMeals(days)
-            
-            for meal in mealOptions {
-                guard let mealName = meal.name else{
-                    throw RestaurantParseError.invalidInfo
-                }
+            if let menuTypes = yrMenus[0].menuTypes {
+                for menuType in menuTypes {
+                    guard let days = menuType.menus?[0].days else {
+                        return [generateErrorMeal()]
+                    }
 
-                guard let menuItemsList = meal.menuItems else {
-                    throw RestaurantParseError.invalidInfo
+                    let mealOptions = try MenuTools.extractJuvenesMeals(days)
+
+                    for meal in mealOptions {
+                        guard let mealName = meal.name else{
+                            throw RestaurantParseError.invalidInfo
+                        }
+
+                        guard let menuItemsList = meal.menuItems else {
+                            throw RestaurantParseError.invalidInfo
+                        }
+
+                        try meals.append(MenuTools.generateJuvenesMeal(name: mealName, orderNumber: meal.orderNumber ?? 99, menuItems: menuItemsList, restaurantType: restaurant))
+                    }
                 }
-                
-                try meals.append(MenuTools.generateJuvenesMeal(name: mealName, orderNumber: meal.orderNumber ?? 99, menuItems: menuItemsList))
             }
+            
+            
             
         } catch {
             meals.append(generateErrorMeal())

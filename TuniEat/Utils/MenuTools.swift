@@ -38,32 +38,35 @@ class MenuTools{
         return MenuTools.GetCurrentDate() == result
     }
     
-    // MARK: Minerva
+    // MARK: Fazer
     
     // It ain't pretty but it works
-    class func parseMinervaPricesAndOrder(mealName:String) -> (String, Int){
+    class func parseFazerPricesAndOrder(mealName:String, restaurant:Restaurant) -> (String, Int){
         var price = ""
         var sortOrder = 0
 
         switch mealName {
         case let str where str.lowercased().contains("kasviskeitto"):
-            price = "2,30€ / 4,90€"
+            price = restaurant == Restaurant.Minerva ? "2,30€ / 4,90€" : "1,80€ / 4,15€"
             sortOrder = 1
         case let str where str.lowercased().contains("kasvislounas"):
-            price = "3,06€ / 6,10€"
+            price = restaurant == Restaurant.Minerva ? "3,06€ / 6,10€" : "3,06€ / 5,36€"
             sortOrder = 2
         case let str where str.lowercased().contains("lounas"):
-            price = "3,06€ / 6,10€"
+            price = restaurant == Restaurant.Minerva ? "3,06€ / 6,10€" : "3,06€ / 5,36€"
             sortOrder = 3
         case let str where str.lowercased().contains("salaattibuffet"):
-            price = "3,75€ / 6,50€"
+            price = restaurant == Restaurant.Minerva ? "3,75€ / 6,50€" : "1,80€ / 4,15€"
             sortOrder = 4
         case let str where str.lowercased().contains("bistro"):
-            price = "4,95€ / 7,75€"
+            price = restaurant == Restaurant.Minerva ? "4,95€ / 7,75€" : "1,80€ / 4,15€"
             sortOrder = 5
-        case let str where str.lowercased().contains("jälkiruoka"):
-            price = "1,20€ / 2,20€"
+        case let str where str.lowercased().contains("proteiiniosa"):
+            price = restaurant == Restaurant.Minerva ? "1,20€ / 2,20€" : "1,80€ / 4,01€"
             sortOrder = 6
+        case let str where str.lowercased().contains("jälkiruoka"):
+            price = restaurant == Restaurant.Minerva ? "1,20€ / 2,20€" : "1,80€ / 4,15€"
+            sortOrder = 10
         default:
             price = "-€"
             sortOrder = 99
@@ -71,7 +74,7 @@ class MenuTools{
         return (price, sortOrder)
     }
     
-    class func generateMinervaMeal(components: [String], price: String, order: Int) -> Meal {
+    class func generateFazerMeal(components: [String], price: String, order: Int) -> Meal {
         
         switch components.count {
         case 0:
@@ -123,7 +126,7 @@ class MenuTools{
         return strArray[0]
     }
 
-    class func extractMinervaMenus(menusForDays: [MenusForDay]) -> [SetMenu]{
+    class func extractFazerMenus(menusForDays: [MenusForDay]) -> [SetMenu]{
         var arr: [SetMenu] = []
         for menu in menusForDays{
             if(compareDateToToday(menu.date)){
@@ -133,12 +136,17 @@ class MenuTools{
         return arr
     }
     
-    // MARK: Linna
+    // MARK: Sodexo
+    
+    class func parseSodexoPrices(_ prices:String) -> String {
+        let strArray = prices.components(separatedBy: "/")
+        return "\(strArray[0].components(separatedBy: " ")[0])€ / \(strArray[1].components(separatedBy: " ")[1])€"
+    }
     
     // MARK: Juvenes
-    class func extractJuvenesMeals(_ days: [Day]) throws -> [MealOption] {
+    class func extractJuvenesMeals(_ days: [Day]) throws -> [Mealoption] {
         let currentDateWithDashes = GetCurrentDate()
-        let currentDate = "20200921"//currentDateWithDashes.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        let currentDate = currentDateWithDashes.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         for day in days {
             if let date = day.date {
                 if String(date) == currentDate{
@@ -153,18 +161,78 @@ class MenuTools{
         throw RestaurantParseError.noDateFound
     }
     
-    class func generateJuvenesMeal(name: Name, orderNumber: Int, menuItems:[MenuItem]) throws -> Meal{
+    class func generatePizzaMeal(orderNumber: Int, menuItems:[MenuItem]) throws -> Meal {
+        let title = "Pizza"
+        let price = "3,06€ / 5,93€"
+        
+        switch menuItems.count {
+        case 1:
+            guard let component1 = menuItems[0].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+            
+            
+            return Meal(orderNumber, title, price, comp1: component1)
+        case 2:
+            guard let component1 = menuItems[0].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+            
+            guard let component2 = menuItems[1].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+            
+            return Meal(orderNumber, title, price, comp1: component1, comp2: component2)
+        case 3:
+            guard let component1 = menuItems[0].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+            
+            guard let component2 = menuItems[1].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+            
+            guard let component3 = menuItems[2].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+            
+            return Meal(orderNumber, title, price, comp1: component1, comp2: component2, comp3: component3)
+        default:
+            return Meal(orderNumber, title, price)
+        }
+    }
+    
+    class func generateJuvenesMeal(name: Name, orderNumber: Int, menuItems:[MenuItem], restaurantType: Restaurant) throws -> Meal{
+        
+        // Pizza gets special treatment. We want "Pizza" as the title and all available sorts as components.
+        if name == .pizza {
+            return try generatePizzaMeal(orderNumber: orderNumber, menuItems: menuItems)
+        }
+        
+        // Different Juvenes' restaurants have different lunch prices.
+        var lunchPrice = ""
+        switch restaurantType {
+        case .YliopistonRavintola:
+            lunchPrice = "3,06€ / 5,70€"
+        case .Newton:
+            lunchPrice = "3,06€ / 5,93€"
+        default:
+            lunchPrice = "-€"
+        }
+        
         
         var price = ""
         switch name {
         case .aamiainen:
             price = "2,95€"
         case .lounasI:
-            price = "3,06€ / 5,70€ / 7,35€"
+            price = lunchPrice
         case .lounasIi:
-            price = "3,06€ / 5,70€ / 7,35€"
+            price = lunchPrice
         case .lounasKasvis:
-            price = "3,06€ / 5,70€ / 7,35€"
+            price = lunchPrice
+        default:
+            price = "-€"
         }
         
         switch menuItems.count {
@@ -228,6 +296,12 @@ class MenuTools{
                 title = "Lounas"
             case .lounasKasvis:
                 title = "Kasvislounas"
+            case .pizza:
+                title = "NYI"
+            case .salaatti:
+                title = "NYI"
+            case .välipala:
+                title = "NYI"
             }
             return Meal(orderNumber, title, price)
         }
