@@ -72,10 +72,6 @@ class MenuCell : UITableViewCell{
             components = components + "\n- " + viewModel.component3
         }
         
-        // If there are no components available, hide the label by setting it's height to zero.
-        if components.isEmpty {
-            foodComponents.autoSetDimensions(to: CGSize(width: 0, height: 0))
-        }
         foodComponents.text = components
     }
     
