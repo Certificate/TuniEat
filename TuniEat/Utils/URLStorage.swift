@@ -23,7 +23,9 @@ class URLStorage {
         case .Hertsi:
             return "https://www.sodexo.fi/ruokalistat/output/daily_json/111/" + MenuTools.GetCurrentDate()
         case .Arvo:
-            return ""
+            return "https://fi.jamix.cloud/apps/menuservice/rest/haku/menu/12347/5?lang=fi"
+        case .FinnMedi:
+            return "https://fi.jamix.cloud/apps/menuservice/rest/haku/menu/96887/1?lang=fi"
         }
     }
 

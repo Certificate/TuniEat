@@ -6,21 +6,90 @@
 //  Copyright © 2019 Valtteri Vuori. All rights reserved.
 //
 
+
 import UIKit
 
-class TAYSViewController : UIViewController{
+class TAYSViewController : BaseTableViewController, TAYSMenuDownloaderDelegate{
+    
+    func didFinishArvoDownload(sender: TAYSMenuDownloader) {
+        arvoMeals = menuDownloader.arvoMenu
+        super.reloadData()
+    }
+    
+    func didFinishFinnMediDownload(sender: TAYSMenuDownloader) {
+        finnMediMeals = menuDownloader.finnMediMenu
+        super.reloadData()
+    }
+    
 
+    let menuDownloader = TAYSMenuDownloader()
+    
+    // Menus
+    var arvoMeals: [Meal] = []
+    var finnMediMeals: [Meal] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        menuDownloader.delegate = self
+        refresher.addTarget(self, action: #selector(downloadMenus(_:)), for: .valueChanged)
+
+        menuDownloader.DownloadTAYSMenus()
+    }
+    
+    @objc private func downloadMenus(_ sender: Any) {
+        menuDownloader.DownloadTAYSMenus()
         
-        label.center = view.center
-        label.textAlignment = .center
-        label.text = "TAYS"
-        label.textColor = UIColor.black
-        self.view.addSubview(label)
+        self.refresher.endRefreshing()
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuCell
         
-        view.backgroundColor = UIColor.white
+        if(indexPath.section == 0){
+            cell.setupValues(viewModel: arvoMeals[indexPath.row])
+        }
+        
+        if(indexPath.section == 1){
+            cell.setupValues(viewModel: finnMediMeals[indexPath.row])
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Arvo"
+        case 1:
+            return "Finn-Medi"
+        default:
+            return "Unknown"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        switch section {
+        case 0:
+            return arvoMeals.count
+        case 1:
+            return finnMediMeals.count
+        default:
+            return 0
+        }
+
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        var count = 0
+        
+        if (!arvoMeals.isEmpty) {
+            count+=1
+        }
+        if (!finnMediMeals.isEmpty) {
+            count+=1
+        }
+        return count
     }
 }

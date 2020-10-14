@@ -23,6 +23,13 @@ protocol HervantaMenuDownloaderDelegate: AnyObject {
     func didFinishNewtonDownload(sender: HervantaMenuDownloader)
 }
 
+protocol TAYSMenuDownloaderDelegate: AnyObject {
+    
+    // Hervanta
+    func didFinishArvoDownload(sender: TAYSMenuDownloader)
+    func didFinishFinnMediDownload(sender: TAYSMenuDownloader)
+}
+
 enum Restaurant {
     // City centre campus
     case YliopistonRavintola
@@ -36,6 +43,7 @@ enum Restaurant {
 
     // TAYS
     case Arvo
+    case FinnMedi
 }
 
 class CityCentreMenuDownloader{
@@ -167,7 +175,6 @@ class HervantaMenuDownloader{
                 switch RestaurantName {
                 case .Newton:
                     meals = self.restaurantParser.parseJuvenes(data, .Newton)
-                    print("jaa")
                 case .Hertsi:
                     meals = self.restaurantParser.parseSodexo(data, .Hertsi)
                 case .Reaktori:
@@ -183,8 +190,64 @@ class HervantaMenuDownloader{
            task.resume()
         }
     }
+}
+
+class TAYSMenuDownloader{
+    weak var delegate:TAYSMenuDownloaderDelegate?
+    
+    let restaurantParser = RestaurantParser()
 
     
-
+    // TAYS
+    var finnMediMenu: [Meal] = []
+    var arvoMenu: [Meal] = []
     
+    func DownloadTAYSMenus(){
+        
+        print("Downloading TAYS menus!")
+        
+        self.GetMenu(.FinnMedi, URLStorage.getRestaurantUrl(.FinnMedi), finished: { mealList in
+            print("Got \(mealList.count) of Finn-Medi meals.")
+            self.finnMediMenu = mealList
+            self.finnMediMenu.sort(by: { $0.sortOrder < $1.sortOrder })
+            print("[Delegate]: Finn-Medi menu ready.")
+            self.delegate?.didFinishFinnMediDownload(sender: self)
+        })
+        
+        self.GetMenu(.Arvo, URLStorage.getRestaurantUrl(.Arvo), finished: { mealList in
+            print("Got \(mealList.count) of Arvo meals.")
+            self.arvoMenu = mealList
+            self.arvoMenu.sort(by: { $0.sortOrder < $1.sortOrder })
+            print("[Delegate]: Arvo menu ready.")
+            self.delegate?.didFinishArvoDownload(sender: self)
+        })
+        
+    }
+    
+    private func GetMenu(_ RestaurantName: Restaurant, _ requestURL: String, finished: @escaping(_ mealList: [Meal]) -> Void){
+        
+        print("Downloading menu from \(requestURL)")
+        if let url = URL(string: requestURL) {
+           let task = URLSession.shared.dataTask(with: url) { data, response, error in
+              if let data = data {
+                print("\(RestaurantName) order download successful. Starting parse.")
+
+                var meals: [Meal] = []
+                
+                switch RestaurantName {
+                case .Arvo:
+                    meals = self.restaurantParser.parseJuvenes(data, .Arvo)
+                case .FinnMedi:
+                    meals = self.restaurantParser.parseJuvenes(data, .FinnMedi)
+                default:
+                    print("No such restaurant found.")
+                }
+
+                finished(meals)
+
+               }
+           }
+           task.resume()
+        }
+    }
 }

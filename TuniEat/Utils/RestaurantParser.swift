@@ -82,8 +82,17 @@ class RestaurantParser {
         do {
             let yrMenus = try jsonDecoder.decode(JuvenesMenu.self, from: data)
             
+            
             if let menuTypes = yrMenus[0].menuTypes {
                 for menuType in menuTypes {
+                    guard let menuName = menuType.menuTypeName else {
+                        return [generateErrorMeal()]
+                    }
+                    
+                    if !menuName.contains("Lounas"){
+                        continue
+                    }
+                    
                     guard let days = menuType.menus?[0].days else {
                         return [generateErrorMeal()]
                     }
@@ -108,7 +117,7 @@ class RestaurantParser {
             
         } catch {
             meals.append(generateErrorMeal())
-            print("Error while parsing Yliopiston Ravintola meals: \(error)")
+            print("Error while parsing Juvenes meals: \(error)")
         }
         
         return meals
