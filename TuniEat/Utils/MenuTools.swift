@@ -98,7 +98,7 @@ class MenuTools{
                 title = "Tietoja ei saatavilla"
             }
 
-            return Meal(order, title, price)
+            return Meal(order, price, [title])
         default:
             let title = cleanMinerva(fullName: components[0])
             
@@ -107,7 +107,7 @@ class MenuTools{
                 componentList.append(cleanMinerva(fullName: component))
             }
             
-            return Meal(order,title, price, components: componentList)
+            return Meal(order, price, componentList)
         }
         
     }
@@ -161,6 +161,8 @@ class MenuTools{
             lunchPrice = "3,06€ / 5,70€"
         case .Newton:
             lunchPrice = "3,06€ / 5,93€"
+        case .Arvo:
+            lunchPrice = "3,06€ / 5,70€"
         default:
             lunchPrice = "-€"
         }
@@ -193,12 +195,8 @@ class MenuTools{
             case .välipala:
                 title = "Välipala"
             }
-            return Meal(orderNumber, title, price)
+            return Meal(orderNumber, price, [title])
         default:
-            guard let title = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-
             var components: [String] = []
             for menuItem in menuItems {
                 guard let component = menuItem.name else {
@@ -206,7 +204,7 @@ class MenuTools{
                 }
                 components.append(component)
             }
-            return Meal(orderNumber, title, price, components: components)
+            return Meal(orderNumber, price, components)
         }
     }
     
@@ -245,7 +243,7 @@ class MenuTools{
         
         switch menuItems.count {
         case 0:
-            return Meal(orderNumber, name, price)
+            return Meal(orderNumber, price, [name])
         default:
             guard let title = menuItems[0].name else {
                 throw RestaurantParseError.invalidInfo
@@ -258,7 +256,7 @@ class MenuTools{
                 }
                 components.append(component)
             }
-            return Meal(orderNumber, title, price, components: components)
+            return Meal(orderNumber, price, components)
         }
     }
     

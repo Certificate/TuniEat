@@ -13,17 +13,14 @@ import os.log
 class Meal: NSObject {
     
     //MARK: Properties
-    var title: String
     var price: String
     var components: [String]
-    
     var sortOrder: Int
     
-    init(_ sortOrder: Int,_ name: String, _ price: String, components: [String] = []) {
+    init(_ sortOrder: Int,_ price: String,_ components: [String] = []) {
         
         // Initialize stored properties.
         self.sortOrder = sortOrder
-        self.title = name
         self.price = price
         self.components = components
         

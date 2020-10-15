@@ -18,11 +18,11 @@ class RestaurantParser {
     private let jsonDecoder = JSONDecoder()
 
     func generateEmptyMeal() -> Meal {
-        Meal(0, "Ei ruokatietoja tälle päivälle", " ")
+        Meal(0, ":(", ["Ei ruokatietoja tälle päivälle"])
     }
 
     func generateErrorMeal() -> Meal {
-        Meal(0, "Virhe ruokatietoja hakiessa.", " ")
+        Meal(0, ":(", ["Virhe ruokatietoja hakiessa"])
     }
     
     func parseSodexo(_ data: Data, _ restaurant:Restaurant) -> [Meal] {
@@ -35,7 +35,7 @@ class RestaurantParser {
                     if(!menu.value.titleFi.isEmpty){
                         let sortOrder = Int(menu.key) ?? 99
                         let price = !menu.value.price.isEmpty ? MenuTools.parseSodexoPrices(menu.value.price) : "Hintatietoja ei saatavilla"
-                        meals.append(Meal(sortOrder, menu.value.titleFi, price))
+                        meals.append(Meal(sortOrder, price, [menu.value.titleFi]))
                     }
                 }
             }
@@ -72,7 +72,7 @@ class RestaurantParser {
             }
         } catch {
             meals.append(generateErrorMeal())
-            print("Error while parsing Fazer meals for \(restaurant): \(error)")
+            print("Error while parsing meals for \(restaurant): \(error)")
         }
         return meals
     }
@@ -117,7 +117,7 @@ class RestaurantParser {
             
         } catch {
             meals.append(generateErrorMeal())
-            print("Error while parsing Juvenes meals: \(error)")
+            print("Error while parsing meals for \(restaurant): \(error)")
         }
         
         return meals
@@ -159,7 +159,7 @@ class RestaurantParser {
             
         } catch {
             meals.append(generateErrorMeal())
-            print("Error while parsing FinnMedi meals for \(restaurant): \(error)")
+            print("Error while parsing meals for \(restaurant): \(error)")
         }
         return meals
     }

@@ -56,13 +56,18 @@ class MenuCell : UITableViewCell{
     }
     
     func setupValues(viewModel: Meal){
-        
-        foodTitle.text = viewModel.title
         foodPrice.text = viewModel.price
         
         var components = ""
-        
         for (index, component) in viewModel.components.enumerated() {
+            
+            // Setup title
+            if index == viewModel.components.startIndex{
+                foodTitle.text = component
+                continue
+            }
+            
+            // Setup potential components
             components = components + "- " + component
             
             if index != viewModel.components.endIndex - 1 {
