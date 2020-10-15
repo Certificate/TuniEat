@@ -99,24 +99,15 @@ class MenuTools{
             }
 
             return Meal(order, title, price)
-        case 2:
-            let title = cleanMinerva(fullName: components[0])
-            let component1 = cleanMinerva(fullName: components[1])
-            return Meal(order, title, price, comp1: component1)
-        case 3:
-            let title = cleanMinerva(fullName: components[0])
-            let component1 = cleanMinerva(fullName: components[1])
-            let component2 = cleanMinerva(fullName: components[2])
-            return Meal(order,title, price, comp1: component1, comp2: component2)
-        case 4:
-            let title = cleanMinerva(fullName: components[0])
-            let component1 = cleanMinerva(fullName: components[1])
-            let component2 = cleanMinerva(fullName: components[2])
-            let component3 = cleanMinerva(fullName: components[3])
-            return Meal(order,title, price, comp1: component1, comp2: component2, comp3: component3)
         default:
             let title = cleanMinerva(fullName: components[0])
-            return Meal(order,title, price)
+            
+            var componentList: [String] = []
+            for component in components {
+                componentList.append(cleanMinerva(fullName: component))
+            }
+            
+            return Meal(order,title, price, components: componentList)
         }
         
     }
@@ -161,55 +152,9 @@ class MenuTools{
         throw RestaurantParseError.noDateFound
     }
     
-    class func generatePizzaMeal(orderNumber: Int, menuItems:[MenuItem]) throws -> Meal {
-        let title = "Pizza"
-        let price = "3,06€ / 5,93€"
-        
-        switch menuItems.count {
-        case 1:
-            guard let component1 = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            
-            return Meal(orderNumber, title, price, comp1: component1)
-        case 2:
-            guard let component1 = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component2 = menuItems[1].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            return Meal(orderNumber, title, price, comp1: component1, comp2: component2)
-        case 3:
-            guard let component1 = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component2 = menuItems[1].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component3 = menuItems[2].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            return Meal(orderNumber, title, price, comp1: component1, comp2: component2, comp3: component3)
-        default:
-            return Meal(orderNumber, title, price)
-        }
-    }
-    
     class func generateJuvenesMeal(name: Name, orderNumber: Int, menuItems:[MenuItem], restaurantType: Restaurant) throws -> Meal{
         
-        // Pizza gets special treatment. We want "Pizza" as the title and all available sorts as components.
-        if name == .pizza {
-            return try generatePizzaMeal(orderNumber: orderNumber, menuItems: menuItems)
-        }
-        
-        // Different Juvenes' restaurants have different lunch prices.
+        // Different Juvenes restaurants have different lunch prices.
         var lunchPrice = ""
         switch restaurantType {
         case .YliopistonRavintola:
@@ -225,88 +170,96 @@ class MenuTools{
         switch name {
         case .aamiainen:
             price = "2,95€"
-        case .lounasI:
-            price = lunchPrice
-        case .lounasIi:
-            price = lunchPrice
-        case .lounasKasvis:
+        case .lounasI, .lounasIi, .lounasKasvis:
             price = lunchPrice
         default:
             price = "-€"
         }
         
         switch menuItems.count {
-        case 1:
-            if let title = menuItems[0].name {
-                return Meal(orderNumber, title, price)
-            }
-        case 2:
-            
-            guard let title = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component1 = menuItems[1].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-
-            return Meal(orderNumber, title, price, comp1: component1)
-            
-        case 3:
-            guard let title = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component1 = menuItems[1].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component2 = menuItems[2].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            return Meal(orderNumber, title, price, comp1: component1, comp2: component2)
-        case 4:
-            guard let title = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component1 = menuItems[1].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component2 = menuItems[2].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            guard let component3 = menuItems[3].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-            
-            return Meal(orderNumber, title, price, comp1: component1, comp2: component2, comp3: component3)
-        default:
-            
+        case 0:
             var title = ""
             switch name {
             case .aamiainen:
                 title = "Aamiainen"
-            case .lounasI:
-                title = "Lounas"
-            case .lounasIi:
+            case .lounasI, .lounasIi:
                 title = "Lounas"
             case .lounasKasvis:
                 title = "Kasvislounas"
             case .pizza:
-                title = "NYI"
+                title = "Pizza"
             case .salaatti:
-                title = "NYI"
+                title = "Salaatti"
             case .välipala:
-                title = "NYI"
+                title = "Välipala"
             }
             return Meal(orderNumber, title, price)
+        default:
+            guard let title = menuItems[0].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+
+            var components: [String] = []
+            for menuItem in menuItems {
+                guard let component = menuItem.name else {
+                    throw RestaurantParseError.invalidInfo
+                }
+                components.append(component)
+            }
+            return Meal(orderNumber, title, price, components: components)
+        }
+    }
+    
+    // MARK: Finn-Medi
+    
+    class func extractFinnMediMeals(_ days: [FinnMediDay]) throws -> [FinnMediMealoption] {
+        let currentDateWithDashes = GetCurrentDate()
+        let currentDate = currentDateWithDashes.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        for day in days {
+            if let date = day.date {
+                if String(date) == currentDate{
+                    if let mealOptions = day.mealoptions{
+                        return mealOptions
+                    }
+                }
+            }
+        }
+    
+        // If no correct date and/or meal option is found, throw an error.
+        throw RestaurantParseError.noDateFound
+    }
+    
+    class func generateFinnMediMeal(name: String, orderNumber: Int, menuItems:[FinnMediMenuItem], restaurantType: Restaurant) throws -> Meal{
+        
+        var price = ""
+        switch name {
+        case "Keittolounas":
+            price = "6,30€"
+        case "Lounas OP":
+            price = "3,05€ / 9,50€"
+        case "Jälkiruoka":
+            price = "1,50€"
+        default:
+            price = "-€"
         }
         
-        return Meal(orderNumber, "Tietojen hakemisessa häikkää", "")
+        switch menuItems.count {
+        case 0:
+            return Meal(orderNumber, name, price)
+        default:
+            guard let title = menuItems[0].name else {
+                throw RestaurantParseError.invalidInfo
+            }
+
+            var components: [String] = []
+            for menuItem in menuItems {
+                guard let component = menuItem.name else {
+                    throw RestaurantParseError.invalidInfo
+                }
+                components.append(component)
+            }
+            return Meal(orderNumber, title, price, components: components)
+        }
     }
     
 }

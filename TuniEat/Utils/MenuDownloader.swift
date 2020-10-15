@@ -238,7 +238,7 @@ class TAYSMenuDownloader{
                 case .Arvo:
                     meals = self.restaurantParser.parseJuvenes(data, .Arvo)
                 case .FinnMedi:
-                    meals = self.restaurantParser.parseJuvenes(data, .FinnMedi)
+                    meals = self.restaurantParser.parseFinnMedi(data, .FinnMedi)
                 default:
                     print("No such restaurant found.")
                 }

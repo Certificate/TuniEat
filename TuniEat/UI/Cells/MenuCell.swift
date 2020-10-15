@@ -62,14 +62,12 @@ class MenuCell : UITableViewCell{
         
         var components = ""
         
-        if !viewModel.component1.isEmpty  {
-            components = components + "- " + viewModel.component1
-        }
-        if !viewModel.component2.isEmpty  {
-            components = components + "\n- " + viewModel.component2
-        }
-        if !viewModel.component3.isEmpty  {
-            components = components + "\n- " + viewModel.component3
+        for (index, component) in viewModel.components.enumerated() {
+            components = components + "- " + component
+            
+            if index != viewModel.components.endIndex - 1 {
+                components = components + "\n"
+            }
         }
         
         foodComponents.text = components

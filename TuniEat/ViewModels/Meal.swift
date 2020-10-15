@@ -15,21 +15,17 @@ class Meal: NSObject {
     //MARK: Properties
     var title: String
     var price: String
-    var component1: String
-    var component2: String
-    var component3: String
+    var components: [String]
     
     var sortOrder: Int
     
-    init(_ sortOrder: Int,_ name: String, _ price: String, comp1: String = "", comp2: String = "", comp3: String = "") {
+    init(_ sortOrder: Int,_ name: String, _ price: String, components: [String] = []) {
         
         // Initialize stored properties.
         self.sortOrder = sortOrder
         self.title = name
         self.price = price
-        self.component1 = comp1
-        self.component2 = comp2
-        self.component3 = comp3
+        self.components = components
         
     }
     

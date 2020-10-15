@@ -123,6 +123,47 @@ class RestaurantParser {
         return meals
     }
     
+    func parseFinnMedi(_ data: Data, _ restaurant:Restaurant) -> [Meal] {
+        var meals: [Meal] = []
+        do {
+            let finnMediMenus = try jsonDecoder.decode(FinnMedi.self, from: data)
+            
+            if let menuTypes = finnMediMenus[0].menuTypes {
+                for menuType in menuTypes {
+
+                    guard let days = menuType.menus?[0].days else {
+                        return [generateErrorMeal()]
+                    }
+
+                    let mealOptions = try MenuTools.extractFinnMediMeals(days)
+
+                    for meal in mealOptions {
+                        
+                        guard let mealName = meal.name else{
+                            throw RestaurantParseError.invalidInfo
+                        }
+                        
+                        // "Lounas" && "Lounas OP" contain the same information. We only need either.
+                        if mealName == "Lounas"{
+                            continue
+                        }
+
+                        guard let menuItemsList = meal.menuItems else {
+                            throw RestaurantParseError.invalidInfo
+                        }
+
+                        try meals.append(MenuTools.generateFinnMediMeal(name: mealName, orderNumber: meal.orderNumber ?? 99, menuItems: menuItemsList, restaurantType: restaurant))
+                    }
+                }
+            }
+            
+        } catch {
+            meals.append(generateErrorMeal())
+            print("Error while parsing FinnMedi meals for \(restaurant): \(error)")
+        }
+        return meals
+    }
+    
     
     
 }
