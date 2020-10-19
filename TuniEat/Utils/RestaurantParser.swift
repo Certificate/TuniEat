@@ -80,10 +80,10 @@ class RestaurantParser {
     func parseJuvenes(_ data: Data, _ restaurant: Restaurant) -> [Meal] {
         var meals: [Meal] = []
         do {
-            let yrMenus = try jsonDecoder.decode(JuvenesMenu.self, from: data)
+            let juvenesMenus = try jsonDecoder.decode(JuvenesMenu.self, from: data)
             
             
-            if let menuTypes = yrMenus[0].menuTypes {
+            if let menuTypes = juvenesMenus[0].menuTypes {
                 for menuType in menuTypes {
                     guard let menuName = menuType.menuTypeName else {
                         return [generateErrorMeal()]

@@ -56,7 +56,7 @@ struct Day: Codable {
 
 // MARK: - Mealoption
 struct Mealoption: Codable {
-    let name: Name?
+    let name: String?
     let orderNumber, id: Int?
     let menuItems: [MenuItem]?
 }
@@ -66,16 +66,6 @@ struct MenuItem: Codable {
     let name: String?
     let orderNumber, portionSize: Int?
     let diets, ingredients: String?
-}
-
-enum Name: String, Codable {
-    case aamiainen = "AAMIAINEN"
-    case lounasI = "LOUNAS I"
-    case lounasIi = "LOUNAS II"
-    case lounasKasvis = "LOUNAS KASVIS"
-    case pizza = "PIZZA"
-    case salaatti = "SALAATTI"
-    case välipala = "VÄLIPALA"
 }
 
 typealias JuvenesMenu = [JuvenesMenuElement]

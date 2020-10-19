@@ -152,17 +152,15 @@ class MenuTools{
         throw RestaurantParseError.noDateFound
     }
     
-    class func generateJuvenesMeal(name: Name, orderNumber: Int, menuItems:[MenuItem], restaurantType: Restaurant) throws -> Meal{
+    class func generateJuvenesMeal(name: String, orderNumber: Int, menuItems:[MenuItem], restaurantType: Restaurant) throws -> Meal{
         
         // Different Juvenes restaurants have different lunch prices.
         var lunchPrice = ""
         switch restaurantType {
-        case .YliopistonRavintola:
+        case .YliopistonRavintola, .Arvo:
             lunchPrice = "3,06€ / 5,70€"
         case .Newton:
             lunchPrice = "3,06€ / 5,93€"
-        case .Arvo:
-            lunchPrice = "3,06€ / 5,70€"
         default:
             lunchPrice = "-€"
         }
@@ -170,9 +168,9 @@ class MenuTools{
         
         var price = ""
         switch name {
-        case .aamiainen:
+        case let str where str.lowercased().contains("aamiainen"):
             price = "2,95€"
-        case .lounasI, .lounasIi, .lounasKasvis:
+        case let str where str.lowercased().contains("lounas"):
             price = lunchPrice
         default:
             price = "-€"
@@ -180,22 +178,7 @@ class MenuTools{
         
         switch menuItems.count {
         case 0:
-            var title = ""
-            switch name {
-            case .aamiainen:
-                title = "Aamiainen"
-            case .lounasI, .lounasIi:
-                title = "Lounas"
-            case .lounasKasvis:
-                title = "Kasvislounas"
-            case .pizza:
-                title = "Pizza"
-            case .salaatti:
-                title = "Salaatti"
-            case .välipala:
-                title = "Välipala"
-            }
-            return Meal(orderNumber, price, [title])
+            return Meal(orderNumber, price, [name.lowercased().capitalizingFirstLetter()])
         default:
             var components: [String] = []
             for menuItem in menuItems {
@@ -243,12 +226,8 @@ class MenuTools{
         
         switch menuItems.count {
         case 0:
-            return Meal(orderNumber, price, [name])
+            return Meal(orderNumber, price, [name.lowercased().capitalizingFirstLetter()])
         default:
-            guard let title = menuItems[0].name else {
-                throw RestaurantParseError.invalidInfo
-            }
-
             var components: [String] = []
             for menuItem in menuItems {
                 guard let component = menuItem.name else {
@@ -259,5 +238,4 @@ class MenuTools{
             return Meal(orderNumber, price, components)
         }
     }
-    
 }
