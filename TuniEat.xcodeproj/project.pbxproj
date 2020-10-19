@@ -27,6 +27,7 @@
 		0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */; };
 		055E09C623A41BD500378F36 /* FazerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E09C523A41BD500378F36 /* FazerMenu.swift */; };
 		058EB90A253878570026733F /* FinnMediMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EB909253878570026733F /* FinnMediMenu.swift */; };
+		05BD43FC253E16980004BFF4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD43FB253E16980004BFF4 /* StringExtensions.swift */; };
 		93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */; };
 		E945BDB54879F993A9C09849 /* URLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945B8C0C570EF843F54DFF4 /* URLStorage.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuvenesUrlGenerator.swift; sourceTree = "<group>"; };
 		055E09C523A41BD500378F36 /* FazerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FazerMenu.swift; sourceTree = "<group>"; };
 		058EB909253878570026733F /* FinnMediMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinnMediMenu.swift; sourceTree = "<group>"; };
+		05BD43FB253E16980004BFF4 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuniEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.release.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.release.xcconfig"; sourceTree = "<group>"; };
 		E945B8C0C570EF843F54DFF4 /* URLStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLStorage.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		053F3FA7239FEECE00A30F6E /* TuniEat */ = {
 			isa = PBXGroup;
 			children = (
+				05BD43FA253E16810004BFF4 /* Extensions */,
 				0532770723FC10BE002DC1BF /* Utils */,
 				05363E9423E174F600629FA6 /* Assets */,
 				05D877F323A1985D00253288 /* UI */,
@@ -172,6 +175,14 @@
 				053F3FCA23A002E700A30F6E /* Meal.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		05BD43FA253E16810004BFF4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				05BD43FB253E16980004BFF4 /* StringExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		05D877F323A1985D00253288 /* UI */ = {
@@ -328,6 +339,7 @@
 				0513C37023E99FFE00E01966 /* MenuTools.swift in Sources */,
 				053A4AC023AD0B38008262BB /* MenuCell.swift in Sources */,
 				0510A7062517E0DB00E95098 /* BaseTableViewController.swift in Sources */,
+				05BD43FC253E16980004BFF4 /* StringExtensions.swift in Sources */,
 				053F3FBD239FEFDD00A30F6E /* CustomTabBarController.swift in Sources */,
 				0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */,
 				053F3FBF239FF03700A30F6E /* CentrumViewController.swift in Sources */,
