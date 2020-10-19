@@ -28,8 +28,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = nav
         
-        // Override point for customization after application launch.
+        if let tabBarViewController = nav.topViewController as? UITabBarController {
+            setStartingTab(tabBarViewController, nav)
+        }
+        
         return true
+    }
+    
+    func setStartingTab(_ vc: UITabBarController, _ nav: UINavigationController){
+
+        // Get value from user defaults and select the correct tab and assign the correct title for said tab
+        let defaults = UserDefaults.standard
+        if let stringOne = defaults.string(forKey: defaultsKeys.location) {
+            switch stringOne {
+            case location.Hervanta:
+                vc.selectedIndex = 1
+                vc.navigationItem.title = "Hervanta"
+            case location.TAYS:
+                vc.selectedIndex = 2
+                nav.navigationItem.title = "TAYS"
+            // Also CityCentre
+            default:
+                vc.selectedIndex = 0
+                nav.navigationItem.title = "Keskustakampus"
+            }
+        }
     }
 }
 

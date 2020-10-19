@@ -100,8 +100,6 @@ class MenuTools{
 
             return Meal(order, price, [title])
         default:
-            let title = cleanMinerva(fullName: components[0])
-            
             var componentList: [String] = []
             for component in components {
                 componentList.append(cleanMinerva(fullName: component))

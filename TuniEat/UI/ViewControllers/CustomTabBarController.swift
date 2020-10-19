@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomTabBarController : UITabBarController{
+class CustomTabBarController : UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -17,8 +17,20 @@ class CustomTabBarController : UITabBarController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Since we launch into Centrum, default title to that as well.
-        self.navigationItem.title = "Keskustakampus"
+        
+        // Set the settings button
+        
+        let barButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(setFavouriteLocation))
+        if #available(iOS 13.0, *) {
+            let settingsIcon = UIImage(systemName: "gearshape")
+            barButtonItem.image = settingsIcon
+        } else {
+            let settingsIcon = UIImage(named: "SettingsWhite")
+            barButtonItem.image = settingsIcon
+        }
+        
+        navigationItem.rightBarButtonItem = barButtonItem
+        
         
         let centrum = CentrumViewController()
         centrum.title = "Keskustakampus"
@@ -33,10 +45,9 @@ class CustomTabBarController : UITabBarController{
         tays.tabBarItem.image = UIImage(named: "Hospital")
         
         viewControllers = [centrum, hervanta, tays]
-        
     }
     
-    // Change navigationcontroller title according to chosen tab
+    // Change navigation controller title according to chosen tab
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.title {
         case "Keskustakampus":
@@ -49,4 +60,21 @@ class CustomTabBarController : UITabBarController{
             self.navigationItem.title = "What the..."
         }
     }
+    
+    @objc func setFavouriteLocation() {
+        // Set default landing page
+        
+        let defaults = UserDefaults.standard
+        defaults.set(location.Hervanta, forKey: defaultsKeys.location)
+    }
+}
+
+struct defaultsKeys {
+    static let location = "location"
+}
+
+struct location {
+    static let CityCentre = "citycentre"
+    static let Hervanta = "hervanta"
+    static let TAYS = "tays"
 }
