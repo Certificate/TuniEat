@@ -23,7 +23,7 @@ class MenuCell : UITableViewCell{
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 4
+        label.numberOfLines = 5
         return label
     }()
     

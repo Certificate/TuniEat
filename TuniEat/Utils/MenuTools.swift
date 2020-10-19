@@ -209,14 +209,14 @@ class MenuTools{
     }
     
     class func generateFinnMediMeal(name: String, orderNumber: Int, menuItems:[FinnMediMenuItem], restaurantType: Restaurant) throws -> Meal{
-        
+                
         var price = ""
         switch name {
-        case "Keittolounas":
+        case let str where str.lowercased().contains("keittolounas"):
             price = "6,30€"
-        case "Lounas OP":
+        case let str where str.lowercased().contains("lounas"):
             price = "3,05€ / 9,50€"
-        case "Jälkiruoka":
+        case let str where str.lowercased().contains("jälkiruoka"):
             price = "1,50€"
         default:
             price = "-€"
@@ -230,6 +230,10 @@ class MenuTools{
             for menuItem in menuItems {
                 guard let component = menuItem.name else {
                     throw RestaurantParseError.invalidInfo
+                }
+                // Finn-Medi likes to seperate sections with special characters. We'll remove them to save precious screen real-estate.
+                if component.contains("* * *") {
+                    continue
                 }
                 components.append(component)
             }

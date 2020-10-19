@@ -143,8 +143,12 @@ class RestaurantParser {
                             throw RestaurantParseError.invalidInfo
                         }
                         
+                        guard let mealId = meal.id else{
+                            throw RestaurantParseError.invalidInfo
+                        }
+                        
                         // "Lounas" && "Lounas OP" contain the same information. We only need either.
-                        if mealName == "Lounas"{
+                        if mealId == 42 {
                             continue
                         }
 

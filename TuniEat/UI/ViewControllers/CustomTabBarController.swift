@@ -28,7 +28,7 @@ class CustomTabBarController : UITabBarController {
         }
         navigationItem.rightBarButtonItem = barButtonItem
         
-        
+        // Setup viewcontrollers for tabs
         let centrum = CentrumViewController()
         centrum.title = "Keskustakampus"
         centrum.tabBarItem.image = UIImage(named: "Banner")
