@@ -29,13 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
         
         if let tabBarViewController = nav.topViewController as? UITabBarController {
-            setStartingTab(tabBarViewController, nav)
+            setStartingTab(tabBarViewController)
         }
         
         return true
     }
     
-    func setStartingTab(_ vc: UITabBarController, _ nav: UINavigationController){
+    func setStartingTab(_ vc: UITabBarController){
 
         // Get value from user defaults and select the correct tab and assign the correct title for said tab
         let defaults = UserDefaults.standard
@@ -46,12 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 vc.navigationItem.title = "Hervanta"
             case location.TAYS:
                 vc.selectedIndex = 2
-                nav.navigationItem.title = "TAYS"
+                vc.navigationItem.title = "TAYS"
             // Also CityCentre
             default:
                 vc.selectedIndex = 0
-                nav.navigationItem.title = "Keskustakampus"
+                vc.navigationItem.title = "Keskustakampus"
             }
+            return
+        }
+        // No user preferences are set. Assign default values.
+        else {
+            vc.selectedIndex = 0
+            vc.navigationItem.title = "Keskustakampus"
         }
     }
 }
