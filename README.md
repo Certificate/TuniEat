@@ -3,7 +3,7 @@ TIETS16 - Programming Project
 
 TuniEat is a simple restaurant parser for restaurants located in the Tampere Unversity campuses.
 
-To begin, download the repository and ```pod install``` (CocoaPods required) on the root folder to restore Pod files.
+To begin, download the repository and ```pod install``` (CocoaPods required) on the root folder to restore Pod files. After this, the Application can be ran using XCode and a compatible device simulator.
 
 
 
