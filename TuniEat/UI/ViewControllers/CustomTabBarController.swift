@@ -30,15 +30,15 @@ class CustomTabBarController : UITabBarController {
         
         // Setup viewcontrollers for tabs
         let centrum = CentrumViewController()
-        centrum.title = "Keskustakampus"
+        centrum.title = NSLocalizedString("CityCentre", comment: "")
         centrum.tabBarItem.image = UIImage(named: "Banner")
         
         let hervanta = HervantaViewController()
-        hervanta.title = "Hervanta"
+        hervanta.title = NSLocalizedString("Hervanta", comment: "")
         hervanta.tabBarItem.image = UIImage(named: "Hervanta")
         
         let tays = TAYSViewController()
-        tays.title = "TAYS"
+        tays.title = NSLocalizedString("TAYS", comment: "")
         tays.tabBarItem.image = UIImage(named: "Hospital")
         
         viewControllers = [centrum, hervanta, tays]
@@ -48,20 +48,15 @@ class CustomTabBarController : UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.title {
         case "Keskustakampus":
-            self.navigationItem.title = "Keskustakampus"
+            self.navigationItem.title = NSLocalizedString("CityCentre", comment: "")
         case "Hervanta":
-            self.navigationItem.title = "Hervanta"
+            self.navigationItem.title = NSLocalizedString("Hervanta", comment: "")
         case "TAYS":
-            self.navigationItem.title = "TAYS"
+            self.navigationItem.title = NSLocalizedString("TAYS", comment: "")
         default:
-            self.navigationItem.title = "What the..."
+            self.navigationItem.title = "Error"
         }
     }
-    
-//    @objc func setFavouriteLocation() {
-//        // Set default landing page
-//
-//    }
     
     @objc func setFavouriteLocation(sender: AnyObject) {
         let defaults = UserDefaults.standard
@@ -69,26 +64,29 @@ class CustomTabBarController : UITabBarController {
         var current: String
         
         if let chosen = defaults.string(forKey: defaultsKeys.location){
-            current = "Nykyinen valinta: \(chosen)"
+            current = NSLocalizedString("CurrentChoice", comment: "") + " \(chosen)"
         } else {
-            current = "Sijaintia ei ole vielä valittu. Oletussijainti on Keskustakampus."
+            current = NSLocalizedString("NoLocationSet", comment: "")
         }
         
-        let alert = UIAlertController(title: "Aloitussivu", message: "Valitse lempisijaintisi listasta. Sovellus aukeaa tähän näkymään jatkossa. \(current)", preferredStyle: .actionSheet)
+        let alert = UIAlertController(
+            title: "Aloitussivu",
+            message: NSLocalizedString("ChooseFavouriteLocation", comment: "") + " \(current)",
+            preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: "Keskustakampus", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("CityCentre", comment: ""), style: .default , handler:{ (UIAlertAction)in
             defaults.set(location.CityCentre, forKey: defaultsKeys.location)
         }))
 
-        alert.addAction(UIAlertAction(title: "Hervanta", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Hervanta", comment: ""), style: .default , handler:{ (UIAlertAction)in
             defaults.set(location.Hervanta, forKey: defaultsKeys.location)
         }))
 
-        alert.addAction(UIAlertAction(title: "TAYS", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("TAYS", comment: ""), style: .default , handler:{ (UIAlertAction)in
             defaults.set(location.TAYS, forKey: defaultsKeys.location)
         }))
 
-        alert.addAction(UIAlertAction(title: "Peruuta", style: .cancel, handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler:{ (UIAlertAction)in
         }))
 
         self.present(alert, animated: true, completion: {})

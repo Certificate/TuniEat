@@ -27,6 +27,7 @@
 		0541F76F2421114F0050483E /* JuvenesUrlGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */; };
 		055E09C623A41BD500378F36 /* FazerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E09C523A41BD500378F36 /* FazerMenu.swift */; };
 		058EB90A253878570026733F /* FinnMediMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058EB909253878570026733F /* FinnMediMenu.swift */; };
+		0596D4D1255AF338002B2EA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0596D4D3255AF338002B2EA7 /* Localizable.strings */; };
 		05BD43FC253E16980004BFF4 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD43FB253E16980004BFF4 /* StringExtensions.swift */; };
 		93EA3556FA92CB85B4CA45FA /* Pods_TuniEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */; };
 		E945BDB54879F993A9C09849 /* URLStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945B8C0C570EF843F54DFF4 /* URLStorage.swift */; };
@@ -43,7 +44,6 @@
 		053F3FA5239FEECE00A30F6E /* TuniEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuniEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		053F3FA8239FEECE00A30F6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		053F3FB1239FEECF00A30F6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		053F3FB4239FEECF00A30F6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		053F3FB6239FEECF00A30F6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		053F3FBC239FEFDD00A30F6E /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		053F3FBE239FF03700A30F6E /* CentrumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentrumViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +55,8 @@
 		0541F76E2421114F0050483E /* JuvenesUrlGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuvenesUrlGenerator.swift; sourceTree = "<group>"; };
 		055E09C523A41BD500378F36 /* FazerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FazerMenu.swift; sourceTree = "<group>"; };
 		058EB909253878570026733F /* FinnMediMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinnMediMenu.swift; sourceTree = "<group>"; };
+		0596D4CD255AF2B6002B2EA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0596D4D2255AF338002B2EA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05BD43FB253E16980004BFF4 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		071F8EEBBDED7EBB04D2F1B8 /* Pods_TuniEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuniEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFD86193F3FA60CD3A1608B /* Pods-TuniEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuniEat.release.xcconfig"; path = "Target Support Files/Pods-TuniEat/Pods-TuniEat.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				053F3FB3239FEECF00A30F6E /* LaunchScreen.storyboard */,
 				053F3FB6239FEECF00A30F6E /* Info.plist */,
 				053F3FB0239FEECF00A30F6E /* Preview Content */,
+				0596D4D3255AF338002B2EA7 /* Localizable.strings */,
 			);
 			path = TuniEat;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0596D4D1255AF338002B2EA7 /* Localizable.strings in Resources */,
 				0510A6F82516AD6200E95098 /* Media.xcassets in Resources */,
 				053F3FB5239FEECF00A30F6E /* LaunchScreen.storyboard in Resources */,
 				05363E9323E174EE00629FA6 /* Colors.xcassets in Resources */,
@@ -354,9 +358,17 @@
 		053F3FB3239FEECF00A30F6E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				053F3FB4239FEECF00A30F6E /* Base */,
+				0596D4CD255AF2B6002B2EA7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0596D4D3255AF338002B2EA7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0596D4D2255AF338002B2EA7 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

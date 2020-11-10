@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  TuniEat
+
+  Created by Valtteri Vuori on 10.11.2020.
+  Copyright © 2020 Valtteri Vuori. All rights reserved.
+*/
+
+// Startup location setting strings
+"ChooseFavouriteLocation" = "Valitse lempisijaintisi listasta. Sovellus aukeaa tähän näkymään jatkossa.";
+"CurrentChoice" = "Nykyinen valinta:";
+"NoLocationSet" = "Sijaintia ei ole vielä valittu. Oletussijainti on Keskustakampus.";
+
+// Area names
+"CityCentre" = "Keskustakampus";
+"Hervanta" = "Hervanta";
+"TAYS" = "TAYS";
+
+// General actions
+"Cancel" = "Peruuta";
+
+// Error messages
+"ErrorParsingFood" = "Virhe ruokatietoja hakiessa";
+"ErrorNoMealsAvailable" = "Ei ruokatietoja tälle päivälle";

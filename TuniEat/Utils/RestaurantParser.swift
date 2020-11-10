@@ -18,11 +18,11 @@ class RestaurantParser {
     private let jsonDecoder = JSONDecoder()
 
     func generateEmptyMeal() -> Meal {
-        Meal(0, ":(", ["Ei ruokatietoja tälle päivälle"])
+        Meal(0, ":(", [NSLocalizedString("ErrorNoMealsAvailable", comment: "")])
     }
 
     func generateErrorMeal() -> Meal {
-        Meal(0, ":(", ["Virhe ruokatietoja hakiessa"])
+        Meal(0, ":(", [NSLocalizedString("ErrorParsingFood", comment: "")])
     }
     
     func parseSodexo(_ data: Data, _ restaurant:Restaurant) -> [Meal] {
